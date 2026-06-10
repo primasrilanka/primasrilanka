@@ -25,7 +25,7 @@
             --border-light: #E2E8F0;
         }
 
-        /* FLEXBOX BODY: Locks the footer to the bottom permanently */
+        /* FLEXBOX BODY */
         body {
             font-family: 'Inter', sans-serif; margin: 0; padding: 0;
             background-color: var(--bg-offset); color: var(--text-body);
@@ -67,7 +67,6 @@
         .nav-link.active { color: var(--prima-red); }
         .nav-link.active::after { width: 100%; }
 
-        /* Main Container */
         .container { flex-grow: 1; width: 100%; max-width: 1300px; margin: 50px auto; padding: 0 5%; box-sizing: border-box; }
 
         /* Animations */
@@ -76,7 +75,7 @@
         @keyframes majesticFadeUp { to { opacity: 1; transform: translateY(0); } }
 
         /* --- BACKGROUND WATERMARKS --- */
-        #Overview {
+        #Overview, #Corporate, #Chicks {
             position: relative; z-index: 1; padding: 40px 5%; background-color: var(--bg-main);
             border-radius: 24px; box-shadow: var(--card-shadow); overflow: hidden;
         }
@@ -85,21 +84,11 @@
             background-image: url('BACKGROUND.jpg'); background-size: cover; background-position: center;
             opacity: 0.08; z-index: -1; pointer-events: none;
         }
-
-        #Corporate {
-            position: relative; z-index: 1; padding: 40px 5%; background-color: var(--bg-main);
-            border-radius: 24px; box-shadow: var(--card-shadow); overflow: hidden; min-height: 800px;
-        }
+        #Corporate { min-height: 800px; }
         #Corporate::before {
             content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             background-image: url('awards-2025.jpg'); background-size: cover; background-position: center;
             opacity: 0.12; z-index: -1; pointer-events: none;
-        }
-
-        /* Farming Tab Background */
-        #Chicks {
-            position: relative; z-index: 1; padding: 40px 5%; background-color: var(--bg-main);
-            border-radius: 24px; box-shadow: var(--card-shadow); overflow: hidden;
         }
         #Chicks::before {
             content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
@@ -133,10 +122,7 @@
         .section-header p { font-size: 1.15rem; max-width: 800px; margin: 0 auto; }
 
         /* Metrics Bar */
-        .metrics-bar {
-            display: flex; justify-content: space-between; background: var(--navy-dark); border-radius: 20px;
-            padding: 40px; margin-bottom: 60px; box-shadow: var(--card-shadow); color: white;
-        }
+        .metrics-bar { display: flex; justify-content: space-between; background: var(--navy-dark); border-radius: 20px; padding: 40px; margin-bottom: 60px; box-shadow: var(--card-shadow); color: white; }
         .metric { text-align: center; flex: 1; border-right: 1px solid rgba(255,255,255,0.1); }
         .metric:last-child { border-right: none; }
         .metric h2 { color: var(--prima-gold); font-size: 2.4rem; margin-bottom: 5px; font-weight: 700; }
@@ -149,20 +135,12 @@
         .card:hover { transform: translateY(-6px); box-shadow: var(--hover-shadow); }
         .card h3 { font-size: 1.35rem; margin-bottom: 15px; }
 
-        /* Vision & Mission Cards (EQUALIZED) */
-        .vision-mission-card {
-            display: flex; flex-direction: column; justify-content: center; height: 100%;
-            text-align: center; padding: 40px; border-radius: 16px; background: rgba(255,255,255,0.95);
-            box-shadow: var(--card-shadow); border: 1px solid var(--border-light); transition: all 0.4s ease;
-            box-sizing: border-box;
-        }
+        /* Vision & Mission Cards */
+        .vision-mission-card { display: flex; flex-direction: column; justify-content: center; height: 100%; text-align: center; padding: 40px; border-radius: 16px; background: rgba(255,255,255,0.95); box-shadow: var(--card-shadow); border: 1px solid var(--border-light); transition: all 0.4s ease; box-sizing: border-box; }
         .vision-mission-card:hover { transform: translateY(-5px); box-shadow: var(--hover-shadow); }
 
         /* Executive Leadership Layout */
-        .leadership-card { 
-            display: flex; gap: 30px; align-items: start; background: white; padding: 40px; 
-            border-radius: 16px; border-left: 5px solid var(--prima-gold); box-shadow: var(--card-shadow); margin-bottom: 30px;
-        }
+        .leadership-card { display: flex; gap: 30px; align-items: start; background: white; padding: 40px; border-radius: 16px; border-left: 5px solid var(--prima-gold); box-shadow: var(--card-shadow); margin-bottom: 30px; }
         .leadership-card img { width: 220px; height: auto; border-radius: 12px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); flex-shrink: 0;}
 
         /* Lists & Highlights */
@@ -177,14 +155,8 @@
         .contact-grid-box { background-color: var(--navy-dark); color: white; padding: 50px; border-radius: 20px; }
         .contact-grid-box h2 { color: var(--prima-gold); }
         .input-group { margin-bottom: 20px; }
-        .input-group input, .input-group textarea {
-            width: 100%; padding: 16px; background-color: #F8FAFC; border: 1px solid var(--border-light);
-            border-radius: 8px; font-family: 'Inter', sans-serif; font-size: 15px; box-sizing: border-box;
-        }
-        .btn-primary {
-            background-color: var(--prima-red); color: white; padding: 16px 35px; border: none;
-            border-radius: 8px; font-family: 'Poppins', sans-serif; font-weight: 600; cursor: pointer; transition: background 0.3s ease;
-        }
+        .input-group input, .input-group textarea { width: 100%; padding: 16px; background-color: #F8FAFC; border: 1px solid var(--border-light); border-radius: 8px; font-family: 'Inter', sans-serif; font-size: 15px; box-sizing: border-box; }
+        .btn-primary { background-color: var(--prima-red); color: white; padding: 16px 35px; border: none; border-radius: 8px; font-family: 'Poppins', sans-serif; font-weight: 600; cursor: pointer; transition: background 0.3s ease; }
         .btn-primary:hover { background-color: var(--prima-dark-red); }
 
         /* Catalog Showroom */
@@ -203,6 +175,26 @@
         .product-meta { display: flex; justify-content: space-between; align-items: center; border-top: 1px dashed var(--border-light); padding-top: 15px; margin-top: auto; }
         .product-weight { font-size: 13px; font-weight: 500; color: #64748B; background: #F1F5F9; padding: 2px 8px; border-radius: 6px; }
         .product-price { font-size: 1.15rem; font-weight: 700; color: var(--navy-dark); }
+
+        /* --- FARMING MEDICAL & EQUIPMENT TABLE UI --- */
+        .pharma-container { background: rgba(255,255,255,0.95); padding: 40px; border-radius: 20px; box-shadow: var(--card-shadow); border-top: 5px solid var(--prima-gold); margin-top: 50px; }
+        .search-bar-container { display: flex; gap: 15px; margin-bottom: 30px; flex-wrap: wrap; }
+        .search-input { flex-grow: 1; padding: 15px 20px; border: 1px solid var(--border-light); border-radius: 10px; font-family: 'Inter', sans-serif; font-size: 1rem; transition: all 0.3s; }
+        .search-input:focus { outline: none; border-color: var(--prima-red); box-shadow: 0 0 0 4px rgba(227, 0, 15, 0.05); }
+        .filter-pill-container { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 25px; }
+        .filter-pill { background: var(--bg-offset); border: 1px solid var(--border-light); padding: 8px 16px; border-radius: 20px; font-size: 13px; font-weight: 600; color: var(--text-body); cursor: pointer; transition: all 0.3s; }
+        .filter-pill.active { background: var(--navy-dark); color: white; border-color: var(--navy-dark); }
+        .filter-pill:hover:not(.active) { background: #E2E8F0; }
+        
+        .table-wrapper { overflow-x: auto; border: 1px solid var(--border-light); border-radius: 12px; }
+        .farm-table { width: 100%; border-collapse: collapse; text-align: left; font-size: 0.95rem; }
+        .farm-table th { background: var(--navy-dark); color: white; padding: 15px 20px; font-weight: 600; white-space: nowrap; font-family: 'Poppins', sans-serif;}
+        .farm-table td { padding: 15px 20px; border-bottom: 1px solid var(--border-light); color: var(--navy-dark); }
+        .farm-table tr:last-child td { border-bottom: none; }
+        .farm-table tr:hover td { background: rgba(0,0,0,0.02); }
+        .item-code { color: #64748B; font-family: monospace; font-size: 0.9rem; }
+        .price-col { font-weight: 600; text-align: right; }
+        .retail-price { color: var(--prima-red); }
 
         /* Investor Relations Card */
         .report-card { display: flex; gap: 30px; background: rgba(255,255,255,0.9); border: 1px solid var(--border-light); border-radius: 16px; padding: 30px; align-items: center; transition: all 0.3s ease; }
@@ -223,25 +215,21 @@
         /* Mobile Responsiveness */
         @media (max-width: 992px) {
             header { flex-direction: column; gap: 15px; padding: 15px 0; }
-            .header-logos img { height: 45px; }
             .nav-menu { width: 90%; padding-left: 5%; }
-            .section-header h1 { font-size: 2.6rem; }
             .metrics-bar { flex-wrap: wrap; gap: 20px; padding: 30px; }
             .metric { min-width: 45%; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 15px;}
             .metric:nth-last-child(-n+2) { border-bottom: none; padding-bottom: 0;}
             .grid-2, .grid-3 { grid-template-columns: 1fr; gap: 30px; }
-            .footer-content { flex-direction: column; text-align: center; }
-            .footer-contact { text-align: center; }
-            .report-card { flex-direction: column; text-align: center; }
-            .sub-nav-menu { justify-content: flex-start; padding-left: 10px; }
             .leadership-card { flex-direction: column; text-align: center; border-left: none; border-top: 5px solid var(--prima-gold); padding: 30px; }
             .leadership-card img { width: 100%; max-width: 250px; margin: 0 auto; }
+            .footer-content, .footer-contact, .report-card { flex-direction: column; text-align: center; }
+            .sub-nav-menu { justify-content: flex-start; padding-left: 10px; }
         }
         @media (max-width: 576px) {
-            .section-header h1 { font-size: 2.2rem; }
             .metric { min-width: 100%; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 20px; }
             .metric:last-child { border-bottom: none; padding-bottom: 0; }
             .catalog-grid { grid-template-columns: 1fr; }
+            .pharma-container { padding: 20px; }
         }
     </style>
 </head>
@@ -394,12 +382,13 @@
                 <div class="gold-divider"></div>
                 <p>Supplying the agricultural baseline of Sri Lanka through our premium publicly listed subsidiary, Three Acre Farms PLC.</p>
             </div>
+            
             <div class="grid-2">
-                <div>
+                <div class="card">
                     <h3>Genetics & Scale of Operation</h3>
                     <p>Three Acre Farms PLC represents the biological heartbeat of our group. In 2025, we committed a massive <strong>Rs. 600.0 Mn investment in a New GP Farm</strong> and <strong>Rs. 215.0 Mn in constructing new Environmentally Controlled (EC) Houses</strong> to maximize early-stage flock survival rates.</p>
                 </div>
-                <div class="card">
+                <div class="card" style="border-top-color: var(--prima-gold);">
                     <h3>"Farmers' Choice" Live Stock</h3>
                     <ul class="custom-list">
                         <li>Exclusive island-wide rights for world-leading <strong>Hy-line</strong> layer genetics.</li>
@@ -407,11 +396,197 @@
                     </ul>
                 </div>
             </div>
+
+            <div class="pharma-container">
+                <div style="text-align: center; margin-bottom: 30px;">
+                    <h2 style="font-size: 2rem; margin-bottom: 10px;">Agro-Livestock Supplies & Pharmaceuticals</h2>
+                    <p style="color: var(--text-body);">Authorized distribution matrix for Vaccines, Medications, Disinfectants, Premixes, and Equipment.</p>
+                </div>
+
+                <div class="search-bar-container">
+                    <input type="text" id="farmSearch" class="search-input" placeholder="Search vaccines, medications, equipment, codes..." onkeyup="filterFarmCatalog()">
+                </div>
+
+                <div class="filter-pill-container">
+                    <button class="filter-pill active" data-filter="all" onclick="selectFarmCategory(event)">All Supplies</button>
+                    <button class="filter-pill" data-filter="bio" onclick="selectFarmCategory(event)">Biologicals (Vaccines)</button>
+                    <button class="filter-pill" data-filter="meds" onclick="selectFarmCategory(event)">Medications & Nutritional</button>
+                    <button class="filter-pill" data-filter="premix" onclick="selectFarmCategory(event)">Disinfectants & Premixes</button>
+                    <button class="filter-pill" data-filter="equip" onclick="selectFarmCategory(event)">Poultry Equipment</button>
+                </div>
+
+                <div class="table-wrapper">
+                    <table class="farm-table" id="farmTable">
+                        <thead>
+                            <tr>
+                                <th>Item Code</th>
+                                <th>Product Name</th>
+                                <th>Pack Size</th>
+                                <th style="text-align: right;">Wholesale (LKR)</th>
+                                <th style="text-align: right;">Retail (LKR)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr data-category="bio">
+                                <td class="item-code">VBBO0002</td><td>AVIPRO ND LASOTA</td><td>1000 DS</td><td class="price-col">800.00</td><td class="price-col retail-price">928.00</td>
+                            </tr>
+                            <tr data-category="bio">
+                                <td class="item-code">VBBO0063</td><td>AVIPRO ND VISOTA</td><td>2500 DS</td><td class="price-col">1,265.00</td><td class="price-col retail-price">1,467.00</td>
+                            </tr>
+                            <tr data-category="bio">
+                                <td class="item-code">VBBO0007</td><td>AVIPRO PRECISE</td><td>1000 DS</td><td class="price-col">2,000.00</td><td class="price-col retail-price">2,320.00</td>
+                            </tr>
+                            <tr data-category="bio">
+                                <td class="item-code">VBBO0054</td><td>AVIPRO PRECISE</td><td>5000 DS</td><td class="price-col">5,760.00</td><td class="price-col retail-price">6,682.00</td>
+                            </tr>
+                            <tr data-category="bio">
+                                <td class="item-code">VBBO0017</td><td>AVIPRO THYMO VAC</td><td>1000 DS</td><td class="price-col">48,000.00</td><td class="price-col retail-price">55,680.00</td>
+                            </tr>
+                            <tr data-category="bio">
+                                <td class="item-code">VBBO0045</td><td>AVIPRO THYMO VAC</td><td>2500 DS</td><td class="price-col">83,145.00</td><td class="price-col retail-price">96,448.00</td>
+                            </tr>
+                            <tr data-category="bio">
+                                <td class="item-code">VBBO0062</td><td>AVIPRO 201 IB/ND</td><td>1000 DS</td><td class="price-col">18,720.00</td><td class="price-col retail-price">21,715.00</td>
+                            </tr>
+                            <tr data-category="bio">
+                                <td class="item-code">VBBO0110</td><td>AVIPRO 108 FC3 PLATINUM</td><td>2000 DS</td><td class="price-col">32,600.00</td><td class="price-col retail-price">37,816.00</td>
+                            </tr>
+                            <tr data-category="bio">
+                                <td class="item-code">VBBO0080</td><td>AVIPRO 104 MG BACTERIN</td><td>1000 DS</td><td class="price-col">21,500.00</td><td class="price-col retail-price">24,940.00</td>
+                            </tr>
+                            <tr data-category="bio">
+                                <td class="item-code">VBBO0100</td><td>AVIPRO 431-ND-IB-BD3-REO</td><td>1000 DS</td><td class="price-col">69,815.00</td><td class="price-col retail-price">80,985.00</td>
+                            </tr>
+                            <tr data-category="bio">
+                                <td class="item-code">VBBO0030</td><td>AVIBLUE</td><td>375 GM</td><td class="price-col">19,264.99</td><td class="price-col retail-price">22,347.00</td>
+                            </tr>
+
+                            <tr data-category="meds">
+                                <td class="item-code">VMMD0060</td><td>TENAMOXIN 500 WSP</td><td>100 GM</td><td class="price-col">2,850.00</td><td class="price-col retail-price">3,563.00</td>
+                            </tr>
+                            <tr data-category="meds">
+                                <td class="item-code">VMMD0031</td><td>TENAMOXIN 500 WSP</td><td>1 KG</td><td class="price-col">19,200.00</td><td class="price-col retail-price">24,000.00</td>
+                            </tr>
+                            <tr data-category="meds">
+                                <td class="item-code">VMMD0032</td><td>MYCOFLOXACINE 100</td><td>100 CC</td><td class="price-col">970.00</td><td class="price-col retail-price">1,213.00</td>
+                            </tr>
+                            <tr data-category="meds">
+                                <td class="item-code">VMMD0033</td><td>MYCOFLOXACINE 100</td><td>1 L</td><td class="price-col">5,500.00</td><td class="price-col retail-price">6,875.00</td>
+                            </tr>
+                            <tr data-category="meds">
+                                <td class="item-code">VMMD0034</td><td>DITRIM ORAL SUSPENSION</td><td>250 CC</td><td class="price-col">4,000.00</td><td class="price-col retail-price">5,000.00</td>
+                            </tr>
+                            <tr data-category="meds">
+                                <td class="item-code">VMMD0079</td><td>TOLTRAZURIL 2.5%</td><td>100 ML</td><td class="price-col">1,815.00</td><td class="price-col retail-price">2,269.00</td>
+                            </tr>
+                            <tr data-category="meds">
+                                <td class="item-code">VMMD0082</td><td>BIOLYTE</td><td>1 KG</td><td class="price-col">2,189.99</td><td class="price-col retail-price">2,738.00</td>
+                            </tr>
+                            <tr data-category="meds">
+                                <td class="item-code">VMMD0084</td><td>LOSIN MSP</td><td>120 GM</td><td class="price-col">9,300.00</td><td class="price-col retail-price">11,625.00</td>
+                            </tr>
+                            <tr data-category="meds">
+                                <td class="item-code">VMMD0085</td><td>LOSIN MSP</td><td>1.2 KG</td><td class="price-col">63,000.00</td><td class="price-col retail-price">78,750.00</td>
+                            </tr>
+                            <tr data-category="meds">
+                                <td class="item-code">VMMD0086</td><td>TILMISIN SOLUTION 25%</td><td>240 ML</td><td class="price-col">9,235.00</td><td class="price-col retail-price">11,544.00</td>
+                            </tr>
+                            <tr data-category="meds">
+                                <td class="item-code">VMMD0087</td><td>TILMISIN SOLUTION 25%</td><td>500 ML</td><td class="price-col">17,585.00</td><td class="price-col retail-price">21,981.00</td>
+                            </tr>
+                            <tr data-category="meds">
+                                <td class="item-code">VMMD0088</td><td>TILMISIN SOLUTION 25%</td><td>1 L</td><td class="price-col">28,500.00</td><td class="price-col retail-price">35,625.00</td>
+                            </tr>
+                            <tr data-category="meds">
+                                <td class="item-code">VMMD0110L</td><td>BETACID LIQ</td><td>1 L</td><td class="price-col">1,500.00</td><td class="price-col retail-price">1,875.00</td>
+                            </tr>
+
+                            <tr data-category="premix">
+                                <td class="item-code">VDDF0004</td><td>PRIMA CLEAN</td><td>200 ML</td><td class="price-col">580.00</td><td class="price-col retail-price">673.00</td>
+                            </tr>
+                            <tr data-category="premix">
+                                <td class="item-code">VPPX0001</td><td>SUPERMIX - BROILER PREMIX</td><td>500 GM</td><td class="price-col">975.00</td><td class="price-col retail-price">1,131.00</td>
+                            </tr>
+                            <tr data-category="premix">
+                                <td class="item-code">VPPX0002</td><td>SUPERMIX - LAYER PREMIX</td><td>500 GM</td><td class="price-col">775.00</td><td class="price-col retail-price">899.00</td>
+                            </tr>
+                            <tr data-category="premix">
+                                <td class="item-code">VPPX0003</td><td>PRIMALYTE</td><td>100 GM</td><td class="price-col">245.00</td><td class="price-col retail-price">284.00</td>
+                            </tr>
+                            <tr data-category="premix">
+                                <td class="item-code">VPPX0004</td><td>PRIMALYTE</td><td>1 KG</td><td class="price-col">2,340.00</td><td class="price-col retail-price">2,714.00</td>
+                            </tr>
+                            <tr data-category="premix">
+                                <td class="item-code">VPPX0011</td><td>PRIMA VITA E-SEL</td><td>50 GM</td><td class="price-col">380.00</td><td class="price-col retail-price">441.00</td>
+                            </tr>
+                            <tr data-category="premix">
+                                <td class="item-code">VPPX0012</td><td>PRIMA VITA E-SEL</td><td>100 GM</td><td class="price-col">725.00</td><td class="price-col retail-price">841.00</td>
+                            </tr>
+                            <tr data-category="premix">
+                                <td class="item-code">VPPX0014</td><td>L-LYSINE 98.5%</td><td>25 KG</td><td class="price-col">26,500.00</td><td class="price-col retail-price">30,740.00</td>
+                            </tr>
+
+                            <tr data-category="equip">
+                                <td class="item-code">XDDR0001</td><td>1/4 GAL CHICK FOUNT</td><td>1 UNIT</td><td class="price-col">180.00</td><td class="price-col retail-price">209.00</td>
+                            </tr>
+                            <tr data-category="equip">
+                                <td class="item-code">XDDR0002</td><td>1 GAL CHICK FOUNT</td><td>1 UNIT</td><td class="price-col">440.00</td><td class="price-col retail-price">510.00</td>
+                            </tr>
+                            <tr data-category="equip">
+                                <td class="item-code">XDDR0003</td><td>2 GAL CHICK FOUNT</td><td>1 UNIT</td><td class="price-col">600.00</td><td class="price-col retail-price">696.00</td>
+                            </tr>
+                            <tr data-category="equip">
+                                <td class="item-code">XFFD0002</td><td>FEEDER - 5 KG</td><td>1 UNIT</td><td class="price-col">1,680.00</td><td class="price-col retail-price">1,949.00</td>
+                            </tr>
+                            <tr data-category="equip">
+                                <td class="item-code">XOOT0001</td><td>LARGE EGG TRAY</td><td>1 UNIT</td><td class="price-col">370.00</td><td class="price-col retail-price">429.00</td>
+                            </tr>
+                            <tr data-category="equip">
+                                <td class="item-code">XFFD0001</td><td>CHICK ROUND FEED TRAY</td><td>1 UNIT</td><td class="price-col">550.00</td><td class="price-col retail-price">638.00</td>
+                            </tr>
+                            <tr data-category="equip">
+                                <td class="item-code">XDDR0005</td><td>DRINKER BASE FOR 9Lt</td><td>1 UNIT</td><td class="price-col">180.00</td><td class="price-col retail-price">209.00</td>
+                            </tr>
+                            <tr data-category="equip">
+                                <td class="item-code">XDDR0006</td><td>DRINKER BASE FOR 4.5Lt</td><td>1 UNIT</td><td class="price-col">130.00</td><td class="price-col retail-price">151.00</td>
+                            </tr>
+                            <tr data-category="equip">
+                                <td class="item-code">XFFD0003</td><td>FEEDER -BASE ONLY</td><td>1 UNIT</td><td class="price-col">580.00</td><td class="price-col retail-price">673.00</td>
+                            </tr>
+                            <tr data-category="equip">
+                                <td class="item-code">XFFD0004</td><td>FEEDER -BUCKET ONLY</td><td>1 UNIT</td><td class="price-col">430.00</td><td class="price-col retail-price">499.00</td>
+                            </tr>
+                            <tr data-category="equip">
+                                <td class="item-code">XFFD0005</td><td>WIRE MESH FOR 5KG FEEDER</td><td>1 UNIT</td><td class="price-col">65.00</td><td class="price-col retail-price">75.00</td>
+                            </tr>
+                            <tr data-category="equip">
+                                <td class="item-code">XDDR0007</td><td>AUTOMATIC DRINKER CLASSIC</td><td>1 UNIT</td><td class="price-col">1,180.00</td><td class="price-col retail-price">1,369.00</td>
+                            </tr>
+                            <tr data-category="equip">
+                                <td class="item-code">XOOT0009</td><td>SPARE DEBEAKER BLADE (K.H.)</td><td>1 UNIT</td><td class="price-col">717.00</td><td class="price-col retail-price">832.00</td>
+                            </tr>
+                            <tr data-category="equip">
+                                <td class="item-code">XOOT0010</td><td>SPARE DEBEAKER BLADE (B.C)</td><td>1 UNIT</td><td class="price-col">885.00</td><td class="price-col retail-price">1,027.00</td>
+                            </tr>
+                            <tr data-category="equip">
+                                <td class="item-code">XOOT0005</td><td>AUTOMATIC POX VACCINATOR</td><td>1 UNIT</td><td class="price-col">4,700.00</td><td class="price-col retail-price">5,452.00</td>
+                            </tr>
+                            <tr data-category="equip">
+                                <td class="item-code">XOOT0013</td><td>AUTOMATIC SYRINGE 2CC</td><td>1 UNIT</td><td class="price-col">8,960.00</td><td class="price-col retail-price">10,394.00</td>
+                            </tr>
+                            <tr data-category="equip">
+                                <td class="item-code">XOOT0012</td><td>DEFETHER RUBBER FINGER</td><td>1 UNIT</td><td class="price-col">279.00</td><td class="price-col retail-price">324.00</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p style="font-size: 0.85rem; color: #9CA3AF; margin-top: 15px; text-align: right;">*Prices quoted above are inclusive of all taxes and subject to change without prior notice.</p>
+            </div>
         </div>
 
         <div id="Chicken" class="main-tab-content">
             <div class="section-header">
-                <img src="prima-chicken-logo.png" alt="Prima Chicken" class="hero-icon">
+                <img src="prima-chicken-logo.png" alt="Prima Chicken" class="hero-icon" onerror="this.style.display='none'">
                 <h1>Prima Chicken Consumer Portfolio</h1>
                 <div class="gold-divider"></div>
                 <p>A top-of-the-range retail product, setting absolute domestic benchmarks for biological safety and freshness.</p>
@@ -656,7 +831,7 @@
     </footer>
 
     <script>
-        // Home Button Function (Clicking the Logo)
+        // Return to Overview
         function goHome() {
             var navlinks = document.getElementsByClassName("nav-link");
             for (var i = 0; i < navlinks.length; i++) {
@@ -678,7 +853,7 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Main Header Tabs
+        // Switch Main Header Tabs
         function openMainPage(evt, pageName) {
             var i, tabcontent, navlinks;
             tabcontent = document.getElementsByClassName("main-tab-content");
@@ -702,7 +877,7 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Inner Sub-Tabs (For the Corporate Section)
+        // Switch Inner Corporate Sub-Tabs
         function openSubPage(evt, subPageName) {
             var i, subcontent, subnavlinks;
             subcontent = document.getElementsByClassName("sub-tab-content");
@@ -721,6 +896,33 @@
             selectedSubTab.style.animation = "majesticFadeUp 0.4s ease forwards";
             
             evt.currentTarget.className += " active";
+        }
+
+        // --- NEW: Live Search & Filter for Agro Catalog ---
+        function filterFarmCatalog() {
+            let searchInput = document.getElementById('farmSearch').value.toLowerCase();
+            let activeCategory = document.querySelector('.filter-pill.active').getAttribute('data-filter');
+            let rows = document.querySelectorAll('#farmTable tbody tr');
+
+            rows.forEach(row => {
+                let text = row.innerText.toLowerCase();
+                let category = row.getAttribute('data-category');
+                
+                let matchesSearch = text.includes(searchInput);
+                let matchesCategory = (activeCategory === 'all' || category === activeCategory);
+
+                if (matchesSearch && matchesCategory) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        }
+
+        function selectFarmCategory(evt) {
+            document.querySelectorAll('.filter-pill').forEach(pill => pill.classList.remove('active'));
+            evt.currentTarget.classList.add('active');
+            filterFarmCatalog(); // re-run filter with new category
         }
     </script>
 </body>
