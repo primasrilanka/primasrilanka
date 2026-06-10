@@ -25,7 +25,7 @@
             --border-light: #E2E8F0;
         }
 
-        /* FLEXBOX BODY */
+        /* FLEXBOX BODY: Locks the footer to the bottom permanently */
         body {
             font-family: 'Inter', sans-serif; margin: 0; padding: 0;
             background-color: var(--bg-offset); color: var(--text-body);
@@ -67,6 +67,7 @@
         .nav-link.active { color: var(--prima-red); }
         .nav-link.active::after { width: 100%; }
 
+        /* Main Container */
         .container { flex-grow: 1; width: 100%; max-width: 1300px; margin: 50px auto; padding: 0 5%; box-sizing: border-box; }
 
         /* Animations */
@@ -75,7 +76,7 @@
         @keyframes majesticFadeUp { to { opacity: 1; transform: translateY(0); } }
 
         /* --- BACKGROUND WATERMARKS --- */
-        #Overview, #Corporate, #Chicks {
+        #Overview {
             position: relative; z-index: 1; padding: 40px 5%; background-color: var(--bg-main);
             border-radius: 24px; box-shadow: var(--card-shadow); overflow: hidden;
         }
@@ -84,11 +85,21 @@
             background-image: url('BACKGROUND.jpg'); background-size: cover; background-position: center;
             opacity: 0.08; z-index: -1; pointer-events: none;
         }
-        #Corporate { min-height: 800px; }
+
+        #Corporate {
+            position: relative; z-index: 1; padding: 40px 5%; background-color: var(--bg-main);
+            border-radius: 24px; box-shadow: var(--card-shadow); overflow: hidden; min-height: 800px;
+        }
         #Corporate::before {
             content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             background-image: url('awards-2025.jpg'); background-size: cover; background-position: center;
             opacity: 0.12; z-index: -1; pointer-events: none;
+        }
+
+        /* Farming Tab Background */
+        #Chicks {
+            position: relative; z-index: 1; padding: 40px 5%; background-color: var(--bg-main);
+            border-radius: 24px; box-shadow: var(--card-shadow); overflow: hidden;
         }
         #Chicks::before {
             content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
@@ -263,31 +274,31 @@
             <div class="metrics-bar">
                 <div class="metric">
                     <h2>Rs. 29.77B</h2>
-                    <p>2025 Revenue</p>
+                    <p>2025 Revenue [cite: 6]</p>
                 </div>
                 <div class="metric">
                     <h2>31%</h2>
-                    <p>Net Profit Growth</p>
+                    <p>Net Profit Growth [cite: 6]</p>
                 </div>
                 <div class="metric">
                     <h2>Rs. 25.89B</h2>
-                    <p>Total Assets</p>
+                    <p>Total Assets [cite: 6]</p>
                 </div>
                 <div class="metric">
                     <h2>6</h2>
-                    <p>Core Subsidiaries</p>
+                    <p>Core Subsidiaries [cite: 6]</p>
                 </div>
             </div>
             
             <div class="grid-2">
                 <div>
                     <h3>Unassailable Vertical Integration</h3>
-                    <p>Functioning as a critical regional node within the architecture of the Singapore-based Prima Group, CGE extends far beyond conventional commodity feed manufacturing. We have systematically engineered a fully vertically integrated agribusiness ecosystem whose operational footprint spans the entirety of the modern poultry value chain.</p>
-                    <p>Our foundational architecture encompasses bulk grain transshipment, highly automated computerized feed milling, flock genetic breeding, commercial farming, and advanced downstream meat processing.</p>
+                    <p>Functioning as a critical regional node within the architecture of the Singapore-based Prima Group, CGE extends far beyond conventional commodity feed manufacturing[cite: 6]. We have systematically engineered a fully vertically integrated agribusiness ecosystem whose operational footprint spans the entirety of the modern poultry value chain[cite: 6].</p>
+                    <p>Our foundational architecture encompasses bulk grain transshipment, highly automated computerized feed milling, flock genetic breeding, commercial farming, and advanced downstream meat processing[cite: 6].</p>
                 </div>
                 <div class="card">
                     <h3>Biological Traceability via Movex ERP</h3>
-                    <p>To control the logistics of tracking millions of living organisms alongside volatile feed materials, CGE utilizes the highly advanced Movex Enterprise Resource Planning system.</p>
+                    <p>To control the logistics of tracking millions of living organisms alongside volatile feed materials, CGE utilizes the highly advanced Movex Enterprise Resource Planning system[cite: 6].</p>
                     <ul class="custom-list">
                         <li>Provides absolute end-to-end biological and chemical tracking.</li>
                         <li>Executes complete backward data tracing from point of sale to specific grandparent flock.</li>
@@ -330,28 +341,28 @@
                 
                 <div class="catalog-grid">
                     <div class="product-card">
-                        <div class="product-image-frame"><img src="15150= 50kg.webp" alt="Broiler Finisher" onerror="this.style.opacity='0.4';"></div>
-                        <div><span class="brand-badge farmers">Farmers' Choice</span><h4 class="product-title">Broiler Finisher Formula</h4></div>
+                        <div class="product-image-frame"><img src="15150= 50kg.webp" alt="Farmers' Choice Broiler Finisher" onerror="this.style.opacity='0.4';"></div>
+                        <div><span class="brand-badge farmers">Farmers' Choice</span><h4 style="font-size:1.1rem; margin:0 0 8px 0;">Farmers' Choice Broiler Finisher</h4></div>
                         <div class="product-meta"><span class="product-weight">50 kg</span><div class="product-price">15,150.00 <span>LKR</span></div></div>
                     </div>
                     <div class="product-card">
-                        <div class="product-image-frame"><img src="15520= 50kg.webp" alt="Layer Feed" onerror="this.style.opacity='0.4';"></div>
-                        <div><span class="brand-badge prima">Prima Feed</span><h4 class="product-title">Layer Feed High-Yield</h4></div>
+                        <div class="product-image-frame"><img src="15520= 50kg.webp" alt="Prima Layer Feed" onerror="this.style.opacity='0.4';"></div>
+                        <div><span class="brand-badge prima">Prima Feed</span><h4 style="font-size:1.1rem; margin:0 0 8px 0;">Prima Layer Feed</h4></div>
                         <div class="product-meta"><span class="product-weight">50 kg</span><div class="product-price">15,520.00 <span>LKR</span></div></div>
                     </div>
                     <div class="product-card">
-                        <div class="product-image-frame"><img src="15660= 50kg.webp" alt="Chick Booster" onerror="this.style.opacity='0.4';"></div>
-                        <div><span class="brand-badge farmers">Farmers' Choice</span><h4 class="product-title">Chick Booster Ration</h4></div>
+                        <div class="product-image-frame"><img src="15660= 50kg.webp" alt="Farmers' Choice Chick Booster" onerror="this.style.opacity='0.4';"></div>
+                        <div><span class="brand-badge farmers">Farmers' Choice</span><h4 style="font-size:1.1rem; margin:0 0 8px 0;">Farmers' Choice Chick Booster</h4></div>
                         <div class="product-meta"><span class="product-weight">50 kg</span><div class="product-price">15,660.00 <span>LKR</span></div></div>
                     </div>
                     <div class="product-card">
-                        <div class="product-image-frame"><img src="5380= 25kg.webp" alt="Layer Grower" onerror="this.style.opacity='0.4';"></div>
-                        <div><span class="brand-badge prima">Prima Feed</span><h4 class="product-title">Layer Grower Formula</h4></div>
+                        <div class="product-image-frame"><img src="5380= 25kg.webp" alt="Prima Layer Grower" onerror="this.style.opacity='0.4';"></div>
+                        <div><span class="brand-badge prima">Prima Feed</span><h4 style="font-size:1.1rem; margin:0 0 8px 0;">Prima Layer Grower</h4></div>
                         <div class="product-meta"><span class="product-weight">25 kg</span><div class="product-price">5,380.00 <span>LKR</span></div></div>
                     </div>
                     <div class="product-card">
-                        <div class="product-image-frame"><img src="6260= 25kg.webp" alt="Chick Starter" onerror="this.style.opacity='0.4';"></div>
-                        <div><span class="brand-badge prima">Prima Feed</span><h4 class="product-title">Chick Starter Crumbles</h4></div>
+                        <div class="product-image-frame"><img src="6260= 25kg.webp" alt="Prima Chick Starter" onerror="this.style.opacity='0.4';"></div>
+                        <div><span class="brand-badge prima">Prima Feed</span><h4 style="font-size:1.1rem; margin:0 0 8px 0;">Prima Chick Starter</h4></div>
                         <div class="product-meta"><span class="product-weight">25 kg</span><div class="product-price">6,260.00 <span>LKR</span></div></div>
                     </div>
                 </div>
@@ -362,12 +373,12 @@
                 <div class="catalog-grid">
                     <div class="product-card">
                         <div class="product-image-frame"><img src="2567.93=25kg.webp" alt="Prima Cattle Feed 25kg" onerror="this.style.opacity='0.4';"></div>
-                        <div><span class="brand-badge prima">Prima Cattle</span><h4 class="product-title">Prima Cattle Feed Premium</h4></div>
+                        <div><span class="brand-badge prima">Prima Cattle</span><h4 style="font-size:1.1rem; margin:0 0 8px 0;">Prima Cattle Feed</h4></div>
                         <div class="product-meta"><span class="product-weight">25 kg</span><div class="product-price">2,567.93 <span>LKR</span></div></div>
                     </div>
                     <div class="product-card">
                         <div class="product-image-frame"><img src="5135.87= 50kg.webp" alt="Prima Cattle Feed 50kg" onerror="this.style.opacity='0.4';"></div>
-                        <div><span class="brand-badge prima">Prima Cattle</span><h4 class="product-title">Prima Cattle Feed Premium</h4></div>
+                        <div><span class="brand-badge prima">Prima Cattle</span><h4 style="font-size:1.1rem; margin:0 0 8px 0;">Prima Cattle Feed</h4></div>
                         <div class="product-meta"><span class="product-weight">50 kg</span><div class="product-price">5,135.87 <span>LKR</span></div></div>
                     </div>
                 </div>
@@ -428,159 +439,159 @@
                         </thead>
                         <tbody>
                             <tr data-category="bio">
-                                <td class="item-code">VBBO0002</td><td>AVIPRO ND LASOTA</td><td>1000 DS</td><td class="price-col">800.00</td><td class="price-col retail-price">928.00</td>
+                                <td class="item-code">VBBO0002 [cite: 1]</td><td>AVIPRO ND LASOTA [cite: 1]</td><td>1000 DS [cite: 1]</td><td class="price-col">800.00 [cite: 1]</td><td class="price-col retail-price">928.00 [cite: 1]</td>
                             </tr>
                             <tr data-category="bio">
-                                <td class="item-code">VBBO0063</td><td>AVIPRO ND VISOTA</td><td>2500 DS</td><td class="price-col">1,265.00</td><td class="price-col retail-price">1,467.00</td>
+                                <td class="item-code">VBBO0063 [cite: 1]</td><td>AVIPRO ND VISOTA [cite: 1]</td><td>2500 DS [cite: 1]</td><td class="price-col">1,265.00 [cite: 1]</td><td class="price-col retail-price">1,467.00 [cite: 1]</td>
                             </tr>
                             <tr data-category="bio">
-                                <td class="item-code">VBBO0007</td><td>AVIPRO PRECISE</td><td>1000 DS</td><td class="price-col">2,000.00</td><td class="price-col retail-price">2,320.00</td>
+                                <td class="item-code">VBBO0007 [cite: 1]</td><td>AVIPRO PRECISE [cite: 1]</td><td>1000 DS [cite: 1]</td><td class="price-col">2,000.00 [cite: 1]</td><td class="price-col retail-price">2,320.00 [cite: 1]</td>
                             </tr>
                             <tr data-category="bio">
-                                <td class="item-code">VBBO0054</td><td>AVIPRO PRECISE</td><td>5000 DS</td><td class="price-col">5,760.00</td><td class="price-col retail-price">6,682.00</td>
+                                <td class="item-code">VBBO0054 [cite: 1]</td><td>AVIPRO PRECISE [cite: 1]</td><td>5000 DS [cite: 1]</td><td class="price-col">5,760.00 [cite: 1]</td><td class="price-col retail-price">6,682.00 [cite: 1]</td>
                             </tr>
                             <tr data-category="bio">
-                                <td class="item-code">VBBO0017</td><td>AVIPRO THYMO VAC</td><td>1000 DS</td><td class="price-col">48,000.00</td><td class="price-col retail-price">55,680.00</td>
+                                <td class="item-code">VBBO0017 [cite: 1]</td><td>AVIPRO THYMO VAC [cite: 1]</td><td>1000 DS [cite: 1]</td><td class="price-col">48,000.00 [cite: 1]</td><td class="price-col retail-price">55,680.00 [cite: 1]</td>
                             </tr>
                             <tr data-category="bio">
-                                <td class="item-code">VBBO0045</td><td>AVIPRO THYMO VAC</td><td>2500 DS</td><td class="price-col">83,145.00</td><td class="price-col retail-price">96,448.00</td>
+                                <td class="item-code">VBBO0045 [cite: 1]</td><td>AVIPRO THYMO VAC [cite: 1]</td><td>2500 DS [cite: 1]</td><td class="price-col">83,145.00 [cite: 1]</td><td class="price-col retail-price">96,448.00 [cite: 1]</td>
                             </tr>
                             <tr data-category="bio">
-                                <td class="item-code">VBBO0062</td><td>AVIPRO 201 IB/ND</td><td>1000 DS</td><td class="price-col">18,720.00</td><td class="price-col retail-price">21,715.00</td>
+                                <td class="item-code">VBBO0062 [cite: 1]</td><td>AVIPRO 201 IB/ND [cite: 1]</td><td>1000 DS [cite: 1]</td><td class="price-col">18,720.00 [cite: 1]</td><td class="price-col retail-price">21,715.00 [cite: 1]</td>
                             </tr>
                             <tr data-category="bio">
-                                <td class="item-code">VBBO0110</td><td>AVIPRO 108 FC3 PLATINUM</td><td>2000 DS</td><td class="price-col">32,600.00</td><td class="price-col retail-price">37,816.00</td>
+                                <td class="item-code">VBBO0110 [cite: 1]</td><td>AVIPRO 108 FC3 PLATINUM [cite: 1]</td><td>2000 DS [cite: 1]</td><td class="price-col">32,600.00 [cite: 1]</td><td class="price-col retail-price">37,816.00 [cite: 1]</td>
                             </tr>
                             <tr data-category="bio">
-                                <td class="item-code">VBBO0080</td><td>AVIPRO 104 MG BACTERIN</td><td>1000 DS</td><td class="price-col">21,500.00</td><td class="price-col retail-price">24,940.00</td>
+                                <td class="item-code">VBBO0080 [cite: 1]</td><td>AVIPRO 104 MG BACTERIN [cite: 1]</td><td>1000 DS [cite: 1]</td><td class="price-col">21,500.00 [cite: 1]</td><td class="price-col retail-price">24,940.00 [cite: 1]</td>
                             </tr>
                             <tr data-category="bio">
-                                <td class="item-code">VBBO0100</td><td>AVIPRO 431-ND-IB-BD3-REO</td><td>1000 DS</td><td class="price-col">69,815.00</td><td class="price-col retail-price">80,985.00</td>
+                                <td class="item-code">VBBO0100 [cite: 1]</td><td>AVIPRO 431-ND-IB-BD3-REO [cite: 1]</td><td>1000 DS [cite: 1, 2]</td><td class="price-col">69,815.00 [cite: 2]</td><td class="price-col retail-price">80,985.00 [cite: 2]</td>
                             </tr>
                             <tr data-category="bio">
-                                <td class="item-code">VBBO0030</td><td>AVIBLUE</td><td>375 GM</td><td class="price-col">19,264.99</td><td class="price-col retail-price">22,347.00</td>
+                                <td class="item-code">VBBO0030 [cite: 2]</td><td>AVIBLUE [cite: 2]</td><td>375 GM [cite: 2]</td><td class="price-col">19,264.99 [cite: 2]</td><td class="price-col retail-price">22,347.00 [cite: 2]</td>
                             </tr>
 
                             <tr data-category="meds">
-                                <td class="item-code">VMMD0060</td><td>TENAMOXIN 500 WSP</td><td>100 GM</td><td class="price-col">2,850.00</td><td class="price-col retail-price">3,563.00</td>
+                                <td class="item-code">VMMD0060 [cite: 2]</td><td>TENAMOXIN 500 WSP [cite: 2]</td><td>100 GM [cite: 2]</td><td class="price-col">2,850.00 [cite: 2]</td><td class="price-col retail-price">3,563.00 [cite: 2]</td>
                             </tr>
                             <tr data-category="meds">
-                                <td class="item-code">VMMD0031</td><td>TENAMOXIN 500 WSP</td><td>1 KG</td><td class="price-col">19,200.00</td><td class="price-col retail-price">24,000.00</td>
+                                <td class="item-code">VMMD0031 [cite: 2]</td><td>TENAMOXIN 500 WSP [cite: 2]</td><td>1 KG [cite: 2]</td><td class="price-col">19,200.00 [cite: 2]</td><td class="price-col retail-price">24,000.00 [cite: 2]</td>
                             </tr>
                             <tr data-category="meds">
-                                <td class="item-code">VMMD0032</td><td>MYCOFLOXACINE 100</td><td>100 CC</td><td class="price-col">970.00</td><td class="price-col retail-price">1,213.00</td>
+                                <td class="item-code">VMMD0032 [cite: 2]</td><td>MYCOFLOXACINE 100 [cite: 2]</td><td>100 CC [cite: 2]</td><td class="price-col">970.00 [cite: 2]</td><td class="price-col retail-price">1,213.00 [cite: 2]</td>
                             </tr>
                             <tr data-category="meds">
-                                <td class="item-code">VMMD0033</td><td>MYCOFLOXACINE 100</td><td>1 L</td><td class="price-col">5,500.00</td><td class="price-col retail-price">6,875.00</td>
+                                <td class="item-code">VMMD0033 [cite: 2]</td><td>MYCOFLOXACINE 100 [cite: 2]</td><td>1 L [cite: 2]</td><td class="price-col">5,500.00 [cite: 2]</td><td class="price-col retail-price">6,875.00 [cite: 2]</td>
                             </tr>
                             <tr data-category="meds">
-                                <td class="item-code">VMMD0034</td><td>DITRIM ORAL SUSPENSION</td><td>250 CC</td><td class="price-col">4,000.00</td><td class="price-col retail-price">5,000.00</td>
+                                <td class="item-code">VMMD0034 [cite: 2]</td><td>DITRIM ORAL SUSPENSION [cite: 2]</td><td>250 CC [cite: 2]</td><td class="price-col">4,000.00 [cite: 2]</td><td class="price-col retail-price">5,000.00 [cite: 2]</td>
                             </tr>
                             <tr data-category="meds">
-                                <td class="item-code">VMMD0079</td><td>TOLTRAZURIL 2.5%</td><td>100 ML</td><td class="price-col">1,815.00</td><td class="price-col retail-price">2,269.00</td>
+                                <td class="item-code">VMMD0079 [cite: 2]</td><td>TOLTRAZURIL 2.5% [cite: 2]</td><td>100 ML [cite: 2]</td><td class="price-col">1,815.00 [cite: 2]</td><td class="price-col retail-price">2,269.00 [cite: 2]</td>
                             </tr>
                             <tr data-category="meds">
-                                <td class="item-code">VMMD0082</td><td>BIOLYTE</td><td>1 KG</td><td class="price-col">2,189.99</td><td class="price-col retail-price">2,738.00</td>
+                                <td class="item-code">VMMD0082 [cite: 2]</td><td>BIOLYTE [cite: 2]</td><td>1 KG [cite: 2]</td><td class="price-col">2,189.99 [cite: 2]</td><td class="price-col retail-price">2,738.00 [cite: 2]</td>
                             </tr>
                             <tr data-category="meds">
-                                <td class="item-code">VMMD0084</td><td>LOSIN MSP</td><td>120 GM</td><td class="price-col">9,300.00</td><td class="price-col retail-price">11,625.00</td>
+                                <td class="item-code">VMMD0084 [cite: 2]</td><td>LOSIN MSP [cite: 2]</td><td>120 GM [cite: 2]</td><td class="price-col">9,300.00 [cite: 2]</td><td class="price-col retail-price">11,625.00 [cite: 2]</td>
                             </tr>
                             <tr data-category="meds">
-                                <td class="item-code">VMMD0085</td><td>LOSIN MSP</td><td>1.2 KG</td><td class="price-col">63,000.00</td><td class="price-col retail-price">78,750.00</td>
+                                <td class="item-code">VMMD0085 [cite: 2]</td><td>LOSIN MSP [cite: 2]</td><td>1.2 KG [cite: 2]</td><td class="price-col">63,000.00 [cite: 2]</td><td class="price-col retail-price">78,750.00 [cite: 2]</td>
                             </tr>
                             <tr data-category="meds">
-                                <td class="item-code">VMMD0086</td><td>TILMISIN SOLUTION 25%</td><td>240 ML</td><td class="price-col">9,235.00</td><td class="price-col retail-price">11,544.00</td>
+                                <td class="item-code">VMMD0086 [cite: 2]</td><td>TILMISIN SOLUTION 25% [cite: 2]</td><td>240 ML [cite: 2]</td><td class="price-col">9,235.00 [cite: 2]</td><td class="price-col retail-price">11,544.00 [cite: 2]</td>
                             </tr>
                             <tr data-category="meds">
-                                <td class="item-code">VMMD0087</td><td>TILMISIN SOLUTION 25%</td><td>500 ML</td><td class="price-col">17,585.00</td><td class="price-col retail-price">21,981.00</td>
+                                <td class="item-code">VMMD0087 [cite: 2]</td><td>TILMISIN SOLUTION 25% [cite: 2]</td><td>500 ML [cite: 2, 3]</td><td class="price-col">17,585.00 [cite: 3]</td><td class="price-col retail-price">21,981.00 [cite: 3]</td>
                             </tr>
                             <tr data-category="meds">
-                                <td class="item-code">VMMD0088</td><td>TILMISIN SOLUTION 25%</td><td>1 L</td><td class="price-col">28,500.00</td><td class="price-col retail-price">35,625.00</td>
+                                <td class="item-code">VMMD0088 [cite: 3]</td><td>TILMISIN SOLUTION 25% [cite: 3]</td><td>1 L [cite: 3]</td><td class="price-col">28,500.00 [cite: 3]</td><td class="price-col retail-price">35,625.00 [cite: 3]</td>
                             </tr>
                             <tr data-category="meds">
-                                <td class="item-code">VMMD0110L</td><td>BETACID LIQ</td><td>1 L</td><td class="price-col">1,500.00</td><td class="price-col retail-price">1,875.00</td>
+                                <td class="item-code">VMMD0110L [cite: 3]</td><td>BETACID LIQ [cite: 3]</td><td>1 L [cite: 3]</td><td class="price-col">1,500.00 [cite: 3]</td><td class="price-col retail-price">1,875.00 [cite: 3]</td>
                             </tr>
 
                             <tr data-category="premix">
-                                <td class="item-code">VDDF0004</td><td>PRIMA CLEAN</td><td>200 ML</td><td class="price-col">580.00</td><td class="price-col retail-price">673.00</td>
+                                <td class="item-code">VDDF0004 [cite: 3]</td><td>PRIMA CLEAN [cite: 3]</td><td>200 ML [cite: 3]</td><td class="price-col">580.00 [cite: 3]</td><td class="price-col retail-price">673.00 [cite: 3]</td>
                             </tr>
                             <tr data-category="premix">
-                                <td class="item-code">VPPX0001</td><td>SUPERMIX - BROILER PREMIX</td><td>500 GM</td><td class="price-col">975.00</td><td class="price-col retail-price">1,131.00</td>
+                                <td class="item-code">VPPX0001 [cite: 3]</td><td>SUPERMIX - BROILER PREMIX [cite: 3]</td><td>500 GM [cite: 3]</td><td class="price-col">975.00 [cite: 3]</td><td class="price-col retail-price">1,131.00 [cite: 3]</td>
                             </tr>
                             <tr data-category="premix">
-                                <td class="item-code">VPPX0002</td><td>SUPERMIX - LAYER PREMIX</td><td>500 GM</td><td class="price-col">775.00</td><td class="price-col retail-price">899.00</td>
+                                <td class="item-code">VPPX0002 [cite: 3]</td><td>SUPERMIX - LAYER PREMIX [cite: 3]</td><td>500 GM [cite: 3]</td><td class="price-col">775.00 [cite: 3]</td><td class="price-col retail-price">899.00 [cite: 3]</td>
                             </tr>
                             <tr data-category="premix">
-                                <td class="item-code">VPPX0003</td><td>PRIMALYTE</td><td>100 GM</td><td class="price-col">245.00</td><td class="price-col retail-price">284.00</td>
+                                <td class="item-code">VPPX0003 [cite: 3]</td><td>PRIMALYTE [cite: 3]</td><td>100 GM [cite: 3]</td><td class="price-col">245.00 [cite: 3]</td><td class="price-col retail-price">284.00 [cite: 3]</td>
                             </tr>
                             <tr data-category="premix">
-                                <td class="item-code">VPPX0004</td><td>PRIMALYTE</td><td>1 KG</td><td class="price-col">2,340.00</td><td class="price-col retail-price">2,714.00</td>
+                                <td class="item-code">VPPX0004 [cite: 3]</td><td>PRIMALYTE [cite: 3]</td><td>1 KG [cite: 3]</td><td class="price-col">2,340.00 [cite: 3]</td><td class="price-col retail-price">2,714.00 [cite: 3]</td>
                             </tr>
                             <tr data-category="premix">
-                                <td class="item-code">VPPX0011</td><td>PRIMA VITA E-SEL</td><td>50 GM</td><td class="price-col">380.00</td><td class="price-col retail-price">441.00</td>
+                                <td class="item-code">VPPX0011 [cite: 3]</td><td>PRIMA VITA E-SEL [cite: 3]</td><td>50 GM [cite: 3]</td><td class="price-col">380.00 [cite: 3]</td><td class="price-col retail-price">441.00 [cite: 3]</td>
                             </tr>
                             <tr data-category="premix">
-                                <td class="item-code">VPPX0012</td><td>PRIMA VITA E-SEL</td><td>100 GM</td><td class="price-col">725.00</td><td class="price-col retail-price">841.00</td>
+                                <td class="item-code">VPPX0012 [cite: 3]</td><td>PRIMA VITA E-SEL [cite: 3]</td><td>100 GM [cite: 3]</td><td class="price-col">725.00 [cite: 3]</td><td class="price-col retail-price">841.00 [cite: 3]</td>
                             </tr>
                             <tr data-category="premix">
-                                <td class="item-code">VPPX0014</td><td>L-LYSINE 98.5%</td><td>25 KG</td><td class="price-col">26,500.00</td><td class="price-col retail-price">30,740.00</td>
+                                <td class="item-code">VPPX0014 [cite: 8]</td><td>L-LYSINE 98.5% [cite: 8]</td><td>25 KG [cite: 8]</td><td class="price-col">26,500.00 [cite: 8]</td><td class="price-col retail-price">30,740.00 [cite: 8]</td>
                             </tr>
 
                             <tr data-category="equip">
-                                <td class="item-code">XDDR0001</td><td>1/4 GAL CHICK FOUNT</td><td>1 UNIT</td><td class="price-col">180.00</td><td class="price-col retail-price">209.00</td>
+                                <td class="item-code">XDDR0001 [cite: 6]</td><td>1/4 GAL CHICK FOUNT [cite: 6]</td><td>1 UNIT [cite: 6]</td><td class="price-col">180.00 [cite: 6]</td><td class="price-col retail-price">209.00 [cite: 6]</td>
                             </tr>
                             <tr data-category="equip">
-                                <td class="item-code">XDDR0002</td><td>1 GAL CHICK FOUNT</td><td>1 UNIT</td><td class="price-col">440.00</td><td class="price-col retail-price">510.00</td>
+                                <td class="item-code">XDDR0002 [cite: 6]</td><td>1 GAL CHICK FOUNT [cite: 6]</td><td>1 UNIT [cite: 6]</td><td class="price-col">440.00 [cite: 6]</td><td class="price-col retail-price">510.00 [cite: 6]</td>
                             </tr>
                             <tr data-category="equip">
-                                <td class="item-code">XDDR0003</td><td>2 GAL CHICK FOUNT</td><td>1 UNIT</td><td class="price-col">600.00</td><td class="price-col retail-price">696.00</td>
+                                <td class="item-code">XDDR0003 [cite: 6]</td><td>2 GAL CHICK FOUNT [cite: 6]</td><td>1 UNIT [cite: 6]</td><td class="price-col">600.00 [cite: 6]</td><td class="price-col retail-price">696.00 [cite: 6]</td>
                             </tr>
                             <tr data-category="equip">
-                                <td class="item-code">XFFD0002</td><td>FEEDER - 5 KG</td><td>1 UNIT</td><td class="price-col">1,680.00</td><td class="price-col retail-price">1,949.00</td>
+                                <td class="item-code">XFFD0002 [cite: 6]</td><td>FEEDER - 5 KG [cite: 6]</td><td>1 UNIT [cite: 6]</td><td class="price-col">1,680.00 [cite: 6]</td><td class="price-col retail-price">1,949.00 [cite: 6]</td>
                             </tr>
                             <tr data-category="equip">
-                                <td class="item-code">XOOT0001</td><td>LARGE EGG TRAY</td><td>1 UNIT</td><td class="price-col">370.00</td><td class="price-col retail-price">429.00</td>
+                                <td class="item-code">XOOT0001 [cite: 6]</td><td>LARGE EGG TRAY [cite: 6]</td><td>1 UNIT [cite: 6]</td><td class="price-col">370.00 [cite: 6]</td><td class="price-col retail-price">429.00 [cite: 6]</td>
                             </tr>
                             <tr data-category="equip">
-                                <td class="item-code">XFFD0001</td><td>CHICK ROUND FEED TRAY</td><td>1 UNIT</td><td class="price-col">550.00</td><td class="price-col retail-price">638.00</td>
+                                <td class="item-code">XFFD0001 [cite: 6]</td><td>CHICK ROUND FEED TRAY [cite: 6]</td><td>1 UNIT [cite: 6]</td><td class="price-col">550.00 [cite: 6]</td><td class="price-col retail-price">638.00 [cite: 6]</td>
                             </tr>
                             <tr data-category="equip">
-                                <td class="item-code">XDDR0005</td><td>DRINKER BASE FOR 9Lt</td><td>1 UNIT</td><td class="price-col">180.00</td><td class="price-col retail-price">209.00</td>
+                                <td class="item-code">XDDR0005 [cite: 6]</td><td>DRINKER BASE FOR 9Lt [cite: 6]</td><td>1 UNIT [cite: 6]</td><td class="price-col">180.00 [cite: 6]</td><td class="price-col retail-price">209.00 [cite: 6]</td>
                             </tr>
                             <tr data-category="equip">
-                                <td class="item-code">XDDR0006</td><td>DRINKER BASE FOR 4.5Lt</td><td>1 UNIT</td><td class="price-col">130.00</td><td class="price-col retail-price">151.00</td>
+                                <td class="item-code">XDDR0006 [cite: 6]</td><td>DRINKER BASE FOR 4.5Lt [cite: 6]</td><td>1 UNIT [cite: 6]</td><td class="price-col">130.00 [cite: 6]</td><td class="price-col retail-price">151.00 [cite: 6]</td>
                             </tr>
                             <tr data-category="equip">
-                                <td class="item-code">XFFD0003</td><td>FEEDER -BASE ONLY</td><td>1 UNIT</td><td class="price-col">580.00</td><td class="price-col retail-price">673.00</td>
+                                <td class="item-code">XFFD0003 [cite: 6]</td><td>FEEDER -BASE ONLY [cite: 6]</td><td>1 UNIT [cite: 6]</td><td class="price-col">580.00 [cite: 6]</td><td class="price-col retail-price">673.00 [cite: 6]</td>
                             </tr>
                             <tr data-category="equip">
-                                <td class="item-code">XFFD0004</td><td>FEEDER -BUCKET ONLY</td><td>1 UNIT</td><td class="price-col">430.00</td><td class="price-col retail-price">499.00</td>
+                                <td class="item-code">XFFD0004 [cite: 6]</td><td>FEEDER -BUCKET ONLY [cite: 6]</td><td>1 UNIT [cite: 6]</td><td class="price-col">430.00 [cite: 6]</td><td class="price-col retail-price">499.00 [cite: 6]</td>
                             </tr>
                             <tr data-category="equip">
-                                <td class="item-code">XFFD0005</td><td>WIRE MESH FOR 5KG FEEDER</td><td>1 UNIT</td><td class="price-col">65.00</td><td class="price-col retail-price">75.00</td>
+                                <td class="item-code">XFFD0005 [cite: 6]</td><td>WIRE MESH FOR 5KG FEEDER/FEEDER MESH [cite: 6]</td><td>1 UNIT [cite: 6]</td><td class="price-col">65.00 [cite: 6]</td><td class="price-col retail-price">75.00 [cite: 6]</td>
                             </tr>
                             <tr data-category="equip">
-                                <td class="item-code">XDDR0007</td><td>AUTOMATIC DRINKER CLASSIC</td><td>1 UNIT</td><td class="price-col">1,180.00</td><td class="price-col retail-price">1,369.00</td>
+                                <td class="item-code">XDDR0007 [cite: 6]</td><td>AUTOMATIC DRINKER CLASSIC [cite: 6]</td><td>1 UNIT [cite: 6]</td><td class="price-col">1,180.00 [cite: 6]</td><td class="price-col retail-price">1,369.00 [cite: 6]</td>
                             </tr>
                             <tr data-category="equip">
-                                <td class="item-code">XOOT0009</td><td>SPARE DEBEAKER BLADE (K.H.)</td><td>1 UNIT</td><td class="price-col">717.00</td><td class="price-col retail-price">832.00</td>
+                                <td class="item-code">XOOT0009 [cite: 6]</td><td>SPARE DEBEAKER BLADE (K.H.) [cite: 6, 7]</td><td>1 UNIT [cite: 7]</td><td class="price-col">717.00 [cite: 7]</td><td class="price-col retail-price">832.00 [cite: 7]</td>
                             </tr>
                             <tr data-category="equip">
-                                <td class="item-code">XOOT0010</td><td>SPARE DEBEAKER BLADE (B.C)</td><td>1 UNIT</td><td class="price-col">885.00</td><td class="price-col retail-price">1,027.00</td>
+                                <td class="item-code">XOOT0010 [cite: 7]</td><td>SPARE DEBEAKER BLADE (B. C ) [cite: 7]</td><td>1 UNIT [cite: 7]</td><td class="price-col">885.00 [cite: 7]</td><td class="price-col retail-price">1,027.00 [cite: 7]</td>
                             </tr>
                             <tr data-category="equip">
-                                <td class="item-code">XOOT0005</td><td>AUTOMATIC POX VACCINATOR</td><td>1 UNIT</td><td class="price-col">4,700.00</td><td class="price-col retail-price">5,452.00</td>
+                                <td class="item-code">XOOT0005 [cite: 7]</td><td>AUTOMATIC POX VACCINATOR [cite: 7]</td><td>1 UNIT [cite: 7]</td><td class="price-col">4,700.00 [cite: 7]</td><td class="price-col retail-price">5,452.00 [cite: 7]</td>
                             </tr>
                             <tr data-category="equip">
-                                <td class="item-code">XOOT0013</td><td>AUTOMATIC SYRINGE 2CC</td><td>1 UNIT</td><td class="price-col">8,960.00</td><td class="price-col retail-price">10,394.00</td>
+                                <td class="item-code">XOOT0013 [cite: 7]</td><td>AUTOMATIC SYRINGE 2CC [cite: 7]</td><td>1 UNIT [cite: 7]</td><td class="price-col">8,960.00 [cite: 7]</td><td class="price-col retail-price">10,394.00 [cite: 7]</td>
                             </tr>
                             <tr data-category="equip">
-                                <td class="item-code">XOOT0012</td><td>DEFETHER RUBBER FINGER</td><td>1 UNIT</td><td class="price-col">279.00</td><td class="price-col retail-price">324.00</td>
+                                <td class="item-code">XOOT0012 [cite: 7]</td><td>DEFETHER RUBBER FINGER [cite: 7]</td><td>1 UNIT [cite: 7]</td><td class="price-col">279.00 [cite: 7]</td><td class="price-col retail-price">324.00 [cite: 7]</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
-                <p style="font-size: 0.85rem; color: #9CA3AF; margin-top: 15px; text-align: right;">*Prices quoted above are inclusive of all taxes and subject to change without prior notice.</p>
+                <p style="font-size: 0.85rem; color: #9CA3AF; margin-top: 15px; text-align: right;">*Prices quoted above are inclusive of all taxes and subject to change without prior notice. [cite: 1, 4, 10]</p>
             </div>
         </div>
 
@@ -638,8 +649,8 @@
                 <div class="grid-2">
                     <div>
                         <h3 style="margin-top: 10px;">Corporate Heritage & Operations</h3>
-                        <p>The foundation of Ceylon Grain Elevators is inextricably linked to Prima Limited, a multinational conglomerate founded in 1961 as the first flour mill in Singapore. Following the establishment of Prima Ceylon in 1977, Ceylon Grain Elevators PLC (CGE) was formally incorporated in May 1982 and listed as a public entity on the Colombo Stock Exchange in 1984.</p>
-                        <p>Functioning as a critical regional node within the broader architecture of the Prima Group, CGE operates as the largest, most technologically advanced, and structurally complex integrated poultry and feed milling enterprise in the Sri Lankan market. We have actively pioneered deep vertical integration to insulate the domestic protein supply from external volatility.</p>
+                        <p>The foundation of Ceylon Grain Elevators is inextricably linked to Prima Limited, a multinational conglomerate founded in 1961 as the first flour mill in Singapore[cite: 6]. Following the establishment of Prima Ceylon in 1977, Ceylon Grain Elevators PLC (CGE) was formally incorporated in May 1982 and listed as a public entity on the Colombo Stock Exchange in 1984[cite: 6].</p>
+                        <p>Functioning as a critical regional node within the broader architecture of the Prima Group, CGE operates as the largest, most technologically advanced, and structurally complex integrated poultry and feed milling enterprise in the Sri Lankan market[cite: 6]. We have actively pioneered deep vertical integration to insulate the domestic protein supply from external volatility[cite: 6].</p>
                     </div>
                     
                     <div class="card" style="border-top-color: var(--prima-gold); padding: 30px;">
@@ -729,11 +740,11 @@
                 <div class="grid-2">
                     <div>
                         <h3>Financial Disclosures</h3>
-                        <p>As a publicly listed entity on the Colombo Stock Exchange (Ticker: GRAN.N0000), we adhere to the highest standards of corporate reporting and IFRS compliance.</p>
+                        <p>As a publicly listed entity on the Colombo Stock Exchange (Ticker: GRAN.N0000), we adhere to the highest standards of corporate reporting and IFRS compliance[cite: 6].</p>
                         <ul class="custom-list">
-                            <li><strong>2025 Revenue:</strong> Rs. 29.77 Billion</li>
-                            <li><strong>Total Assets:</strong> Rs. 25.89 Billion</li>
-                            <li><strong>Profit Growth:</strong> 31%</li>
+                            <li><strong>2025 Revenue:</strong> Rs. 29.77 Billion [cite: 6]</li>
+                            <li><strong>Total Assets:</strong> Rs. 25.89 Billion [cite: 6]</li>
+                            <li><strong>Profit Growth:</strong> 31% [cite: 6]</li>
                         </ul>
                     </div>
                     <div class="report-card">
@@ -786,10 +797,10 @@
                     <h2>Operational Base</h2>
                     <p style="color: white; font-size: 1.1rem; margin-bottom: 30px;">
                         <strong>Ceylon Grain Elevators PLC</strong><br>
-                        No. 15, Rock House Lane,<br> Mutwal, Colombo 15, Sri Lanka
+                        No. 15, Rock House Lane,<br> Mutwal, Colombo 15, Sri Lanka [cite: 6]
                     </p>
-                    <p style="margin-bottom: 10px;"><strong>Direct Line:</strong> <a href="tel:+94112522556" style="color: white; text-decoration: none;">+94 (11) 252 2556</a></p>
-                    <p style="margin-bottom: 10px;"><strong>Fax Terminal:</strong> +94 (11) 252 4163</p>
+                    <p style="margin-bottom: 10px;"><strong>Direct Line:</strong> <a href="tel:+94112522556" style="color: white; text-decoration: none;">+94 (11) 252 2556</a> [cite: 1, 6]</p>
+                    <p style="margin-bottom: 10px;"><strong>Fax Terminal:</strong> +94 (11) 252 4163 [cite: 1, 6]</p>
                     <p><strong>Corporate Email:</strong> <a href="mailto:cge-info@prima.com.lk" style="color: white; text-decoration: none;">cge-info@prima.com.lk</a></p>
                     
                     <div style="margin-top: 40px; border-top: 1px solid rgba(255,255,255,0.2); padding-top: 20px;">
@@ -818,9 +829,9 @@
             </div>
             <div class="footer-contact">
                 <p style="color: white; font-weight: 600; font-size: 1.1rem; margin-bottom: 10px;">Ceylon Grain Elevators PLC</p>
-                <p>No. 15, Rock House Lane, Colombo 15, Sri Lanka</p>
+                <p>No. 15, Rock House Lane, Colombo 15, Sri Lanka [cite: 6]</p>
                 <p>
-                    <a href="tel:+94112522556" class="footer-link">📞 +94 (11) 252 2556</a> &nbsp;|&nbsp; 
+                    <a href="tel:+94112522556" class="footer-link">📞 +94 (11) 252 2556</a> &nbsp;|&nbsp;  [cite: 1, 6]
                     <a href="mailto:cge-info@prima.com.lk" class="footer-link">✉️ cge-info@prima.com.lk</a>
                 </p>
             </div>
@@ -922,7 +933,7 @@
         function selectFarmCategory(evt) {
             document.querySelectorAll('.filter-pill').forEach(pill => pill.classList.remove('active'));
             evt.currentTarget.classList.add('active');
-            filterFarmCatalog(); // re-run filter with new category
+            filterFarmCatalog();
         }
     </script>
 </body>
