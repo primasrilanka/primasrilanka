@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ceylon Grain Elevators PLC | Enterprise Portal</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- Ultimate Enterprise Design System --- */
+        :root {
+            --prima-red: #E3000F;
+            --prima-dark-red: #B0000A;
+            --prima-gold: #D4AF37;
+            --navy-dark: #0A1128;
+            --navy-light: #162447;
+            --text-body: #4B5563;
+            --bg-main: #FFFFFF;
+            --bg-offset: #F8FAFC;
+            --card-shadow: 0 15px 35px rgba(0,0,0,0.04);
+            --hover-shadow: 0 30px 60px -12px rgba(15,23,42,0.12);
+            --border-light: #E2E8F0;
+        }
+
+        /* FLEXBOX BODY: Locks the footer to the bottom permanently */
+        body {
+            font-family: 'Inter', sans-serif; margin: 0; padding: 0;
+            background-color: var(--bg-offset); color: var(--text-body);
+            line-height: 1.7; overflow-x: hidden; -webkit-font-smoothing: antialiased;
+            display: flex; flex-direction: column; min-height: 100vh;
+        }
+
+        h1, h2, h3, h4 { font-family: 'Poppins', sans-serif; color: var(--navy-dark); margin-top: 0; line-height: 1.3; }
+
+        /* Executive Header */
+        header {
+            background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(20px);
+            padding: 15px 5%; display: flex; justify-content: space-between; align-items: center;
+            border-bottom: 1px solid rgba(0,0,0,0.06); position: sticky; top: 0; z-index: 1000;
+        }
+        .header-logos { display: flex; align-items: center; gap: 25px; }
+        .header-logos img.cge-main-logo { height: 55px; cursor: pointer; transition: transform 0.3s ease; }
+        .header-logos img.cge-main-logo:hover { transform: scale(1.05); }
+        .header-logos img.prima-main-logo { height: 55px; }
+
+        /* Swipeable Mobile-Friendly Navigation */
+        .nav-menu {
+            display: flex; gap: 25px; align-items: center; overflow-x: auto;
+            white-space: nowrap; -webkit-overflow-scrolling: touch; padding-bottom: 5px; 
+        }
+        .nav-menu::-webkit-scrollbar { height: 3px; }
+        .nav-menu::-webkit-scrollbar-thumb { background: transparent; border-radius: 3px; }
+        .nav-menu:hover::-webkit-scrollbar-thumb { background: var(--border-light); }
+        .nav-link {
+            background: none; border: none; font-family: 'Poppins', sans-serif; font-size: 13px;
+            font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: var(--navy-light);
+            cursor: pointer; padding: 8px 0; position: relative; transition: color 0.3s ease;
+        }
+        .nav-link:hover { color: var(--prima-red); }
+        .nav-link::after {
+            content: ''; position: absolute; width: 0; height: 2px; bottom: 0; left: 0;
+            background-color: var(--prima-red); transition: width 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .nav-link.active { color: var(--prima-red); }
+        .nav-link.active::after { width: 100%; }
+
+        /* Main Container */
+        .container { flex-grow: 1; width: 100%; max-width: 1300px; margin: 50px auto; padding: 0 5%; box-sizing: border-box; }
+
+        /* Animations */
+        .main-tab-content { display: none; animation: majesticFadeUp 0.6s ease forwards; opacity: 0; transform: translateY(20px); }
+        .sub-tab-content { display: none; animation: majesticFadeUp 0.4s ease forwards; opacity: 0; transform: translateY(20px); }
+        @keyframes majesticFadeUp { to { opacity: 1; transform: translateY(0); } }
+
+        /* --- BACKGROUND WATERMARKS --- */
+        #Overview {
+            position: relative; z-index: 1; padding: 40px 5%; background-color: var(--bg-main);
+            border-radius: 24px; box-shadow: var(--card-shadow); overflow: hidden;
+        }
+        #Overview::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url('BACKGROUND.jpg'); background-size: cover; background-position: center;
+            opacity: 0.08; z-index: -1; pointer-events: none;
+        }
+
+        #Corporate {
+            position: relative; z-index: 1; padding: 40px 5%; background-color: var(--bg-main);
+            border-radius: 24px; box-shadow: var(--card-shadow); overflow: hidden; min-height: 800px;
+        }
+        #Corporate::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url('awards-2025.jpg'); background-size: cover; background-position: center;
+            opacity: 0.12; z-index: -1; pointer-events: none;
+        }
+
+        /* Farming Tab Background */
+        #Chicks {
+            position: relative; z-index: 1; padding: 40px 5%; background-color: var(--bg-main);
+            border-radius: 24px; box-shadow: var(--card-shadow); overflow: hidden;
+        }
+        #Chicks::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url('sri-lanka-poultry.webp'); background-size: cover; background-position: center;
+            opacity: 0.12; z-index: -1; pointer-events: none;
+        }
+
+        /* Inner Sub-Navigation */
+        .sub-nav-menu {
+            display: flex; justify-content: center; gap: 15px; margin-bottom: 50px;
+            border-bottom: 1px solid rgba(0,0,0,0.06); padding-bottom: 20px;
+            overflow-x: auto; white-space: nowrap; -webkit-overflow-scrolling: touch;
+        }
+        .sub-nav-link {
+            background: var(--bg-offset); border: 1px solid var(--border-light);
+            padding: 10px 25px; border-radius: 30px; font-family: 'Inter', sans-serif;
+            font-weight: 600; font-size: 13px; color: var(--navy-light); text-transform: uppercase; letter-spacing: 0.5px;
+            cursor: pointer; transition: all 0.3s ease;
+        }
+        .sub-nav-link:hover { background: #E2E8F0; }
+        .sub-nav-link.active {
+            background: var(--navy-dark); color: white; border-color: var(--navy-dark);
+            box-shadow: 0 4px 10px rgba(10, 17, 40, 0.2);
+        }
+
+        /* Section Headers */
+        .section-header { text-align: center; margin-bottom: 50px; position: relative; }
+        .section-header img.hero-icon { max-height: 100px; margin-bottom: 25px; filter: drop-shadow(0 10px 15px rgba(0,0,0,0.05)); }
+        .section-header h1 { font-family: 'Playfair Display', serif; font-size: 3.2rem; color: var(--navy-dark); margin-bottom: 15px; }
+        .gold-divider { width: 80px; height: 4px; background: linear-gradient(90deg, var(--prima-gold), #FFF8DC); margin: 0 auto 25px auto; border-radius: 4px; }
+        .section-header p { font-size: 1.15rem; max-width: 800px; margin: 0 auto; }
+
+        /* Metrics Bar */
+        .metrics-bar {
+            display: flex; justify-content: space-between; background: var(--navy-dark); border-radius: 20px;
+            padding: 40px; margin-bottom: 60px; box-shadow: var(--card-shadow); color: white;
+        }
+        .metric { text-align: center; flex: 1; border-right: 1px solid rgba(255,255,255,0.1); }
+        .metric:last-child { border-right: none; }
+        .metric h2 { color: var(--prima-gold); font-size: 2.4rem; margin-bottom: 5px; font-weight: 700; }
+        .metric p { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1.5px; margin: 0; color: #9CA3AF; }
+
+        /* Grids & Cards */
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; margin-bottom: 60px; align-items: stretch;}
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-bottom: 60px; }
+        .card { background: var(--bg-main); padding: 45px; border-radius: 20px; box-shadow: var(--card-shadow); border-top: 5px solid var(--prima-red); transition: all 0.4s ease; }
+        .card:hover { transform: translateY(-6px); box-shadow: var(--hover-shadow); }
+        .card h3 { font-size: 1.35rem; margin-bottom: 15px; }
+
+        /* Vision & Mission Cards (EQUALIZED) */
+        .vision-mission-card {
+            display: flex; flex-direction: column; justify-content: center; height: 100%;
+            text-align: center; padding: 40px; border-radius: 16px; background: rgba(255,255,255,0.95);
+            box-shadow: var(--card-shadow); border: 1px solid var(--border-light); transition: all 0.4s ease;
+            box-sizing: border-box;
+        }
+        .vision-mission-card:hover { transform: translateY(-5px); box-shadow: var(--hover-shadow); }
+
+        /* Executive Leadership Layout */
+        .leadership-card { 
+            display: flex; gap: 30px; align-items: start; background: white; padding: 40px; 
+            border-radius: 16px; border-left: 5px solid var(--prima-gold); box-shadow: var(--card-shadow); margin-bottom: 30px;
+        }
+        .leadership-card img { width: 220px; height: auto; border-radius: 12px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); flex-shrink: 0;}
+
+        /* Lists & Highlights */
+        ul.custom-list { list-style: none; padding: 0; }
+        ul.custom-list li { position: relative; padding-left: 25px; margin-bottom: 12px; }
+        ul.custom-list li::before { content: '♦'; position: absolute; left: 0; color: var(--prima-red); }
+        .highlight-box { background: linear-gradient(135deg, var(--navy-dark), var(--navy-light)); color: white; padding: 40px; border-radius: 20px; margin: 40px 0; }
+        .highlight-box h3 { color: var(--prima-gold); }
+        .banner-img { width: 100%; height: auto; border-radius: 20px; box-shadow: var(--card-shadow); margin-bottom: 40px; }
+
+        /* Contact Box */
+        .contact-grid-box { background-color: var(--navy-dark); color: white; padding: 50px; border-radius: 20px; }
+        .contact-grid-box h2 { color: var(--prima-gold); }
+        .input-group { margin-bottom: 20px; }
+        .input-group input, .input-group textarea {
+            width: 100%; padding: 16px; background-color: #F8FAFC; border: 1px solid var(--border-light);
+            border-radius: 8px; font-family: 'Inter', sans-serif; font-size: 15px; box-sizing: border-box;
+        }
+        .btn-primary {
+            background-color: var(--prima-red); color: white; padding: 16px 35px; border: none;
+            border-radius: 8px; font-family: 'Poppins', sans-serif; font-weight: 600; cursor: pointer; transition: background 0.3s ease;
+        }
+        .btn-primary:hover { background-color: var(--prima-dark-red); }
+
+        /* Catalog Showroom */
+        .catalog-container { margin-top: 50px; }
+        .catalog-segment-title { font-family: 'Poppins', sans-serif; font-size: 1.8rem; color: var(--navy-dark); margin: 40px 0 20px 0; padding-bottom: 10px; border-bottom: 2px solid var(--border-light); }
+        .catalog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 30px; margin-bottom: 50px; }
+        .product-card { background: var(--bg-main); border: 1px solid var(--border-light); border-radius: 16px; padding: 25px; text-align: center; transition: all 0.4s ease; display: flex; flex-direction: column; }
+        .product-card:hover { transform: translateY(-8px); box-shadow: var(--hover-shadow); border-color: rgba(223, 4, 4, 0.15); }
+        .product-image-frame { background: #F8FAFC; border-radius: 12px; padding: 20px; height: 220px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; overflow: hidden; }
+        .product-image-frame img { max-height: 100%; max-width: 100%; object-fit: contain; transition: transform 0.4s ease; }
+        .product-card:hover .product-image-frame img { transform: scale(1.06); }
+        .brand-badge { display: inline-block; font-size: 11px; font-weight: 600; text-transform: uppercase; padding: 3px 10px; border-radius: 30px; margin-bottom: 10px; }
+        .brand-badge.prima { background: #FEE2E2; color: #DC2626; }
+        .brand-badge.farmers { background: #FEF3C7; color: #D97706; }
+        .product-title { font-size: 1.1rem; font-weight: 600; color: var(--navy-dark); margin: 0 0 8px 0; height: 50px; }
+        .product-meta { display: flex; justify-content: space-between; align-items: center; border-top: 1px dashed var(--border-light); padding-top: 15px; margin-top: auto; }
+        .product-weight { font-size: 13px; font-weight: 500; color: #64748B; background: #F1F5F9; padding: 2px 8px; border-radius: 6px; }
+        .product-price { font-size: 1.15rem; font-weight: 700; color: var(--navy-dark); }
+
+        /* Investor Relations Card */
+        .report-card { display: flex; gap: 30px; background: rgba(255,255,255,0.9); border: 1px solid var(--border-light); border-radius: 16px; padding: 30px; align-items: center; transition: all 0.3s ease; }
+        .report-card:hover { border-color: var(--prima-gold); box-shadow: var(--hover-shadow); }
+        .report-card img { width: 120px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        .btn-download { display: inline-block; background: var(--navy-dark); color: white; padding: 12px 25px; border-radius: 6px; text-decoration: none; font-weight: 600; font-family: 'Poppins', sans-serif; margin-top: 15px; transition: background 0.3s; }
+        .btn-download:hover { background: var(--prima-red); }
+
+        /* Footer */
+        footer { margin-top: auto; width: 100%; background: var(--navy-dark); color: #9CA3AF; padding: 50px 5%; font-size: 0.95rem; border-top: 4px solid var(--prima-red); box-sizing: border-box; }
+        .footer-content { max-width: 1300px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 30px; }
+        .footer-logos img { height: 45px; margin-right: 20px; vertical-align: middle; }
+        .footer-contact { text-align: right; }
+        .footer-contact p { margin: 5px 0; }
+        .footer-link { color: #D1D5DB; text-decoration: none; transition: color 0.3s ease; }
+        .footer-link:hover { color: var(--prima-gold); }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 992px) {
+            header { flex-direction: column; gap: 15px; padding: 15px 0; }
+            .header-logos img { height: 45px; }
+            .nav-menu { width: 90%; padding-left: 5%; }
+            .section-header h1 { font-size: 2.6rem; }
+            .metrics-bar { flex-wrap: wrap; gap: 20px; padding: 30px; }
+            .metric { min-width: 45%; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 15px;}
+            .metric:nth-last-child(-n+2) { border-bottom: none; padding-bottom: 0;}
+            .grid-2, .grid-3 { grid-template-columns: 1fr; gap: 30px; }
+            .footer-content { flex-direction: column; text-align: center; }
+            .footer-contact { text-align: center; }
+            .report-card { flex-direction: column; text-align: center; }
+            .sub-nav-menu { justify-content: flex-start; padding-left: 10px; }
+            .leadership-card { flex-direction: column; text-align: center; border-left: none; border-top: 5px solid var(--prima-gold); padding: 30px; }
+            .leadership-card img { width: 100%; max-width: 250px; margin: 0 auto; }
+        }
+        @media (max-width: 576px) {
+            .section-header h1 { font-size: 2.2rem; }
+            .metric { min-width: 100%; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 20px; }
+            .metric:last-child { border-bottom: none; padding-bottom: 0; }
+            .catalog-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-logos">
+            <img src="cge-logo.png" alt="CGE Logo" class="cge-main-logo" title="Return to Overview" onclick="goHome()">
+            <img src="prima-logo.png" alt="Prima Group Logo" class="prima-main-logo">
+        </div>
+        <nav class="nav-menu">
+            <button class="nav-link active" onclick="openMainPage(event, 'Overview')">Overview</button>
+            <button class="nav-link" onclick="openMainPage(event, 'Feed')">Feed Catalog</button>
+            <button class="nav-link" onclick="openMainPage(event, 'Chicks')">Farming</button>
+            <button class="nav-link" onclick="openMainPage(event, 'Chicken')">Prima Chicken</button>
+            <button class="nav-link" onclick="openMainPage(event, 'Corporate')">Corporate</button>
+            <button class="nav-link" onclick="openMainPage(event, 'Contact')">Contact Us</button>
+        </nav>
+    </header>
+
+    <div class="container">
+
+        <div id="Overview" class="main-tab-content" style="display:block;">
+            <div class="section-header">
+                <img src="cge-logo.png" alt="CGE" class="hero-icon">
+                <h1>Ceylon Grain Elevators PLC</h1>
+                <div class="gold-divider"></div>
+                <p>The premier structural apex within the agribusiness, animal nutrition, and livestock sectors of Sri Lanka. We operate as the largest and most technologically advanced integrated enterprise in the domestic market.</p>
+            </div>
+
+            <div class="metrics-bar">
+                <div class="metric">
+                    <h2>Rs. 29.77B</h2>
+                    <p>2025 Revenue</p>
+                </div>
+                <div class="metric">
+                    <h2>31%</h2>
+                    <p>Net Profit Growth</p>
+                </div>
+                <div class="metric">
+                    <h2>Rs. 25.89B</h2>
+                    <p>Total Assets</p>
+                </div>
+                <div class="metric">
+                    <h2>6</h2>
+                    <p>Core Subsidiaries</p>
+                </div>
+            </div>
+            
+            <div class="grid-2">
+                <div>
+                    <h3>Unassailable Vertical Integration</h3>
+                    <p>Functioning as a critical regional node within the architecture of the Singapore-based Prima Group, CGE extends far beyond conventional commodity feed manufacturing. We have systematically engineered a fully vertically integrated agribusiness ecosystem whose operational footprint spans the entirety of the modern poultry value chain.</p>
+                    <p>Our foundational architecture encompasses bulk grain transshipment, highly automated computerized feed milling, flock genetic breeding, commercial farming, and advanced downstream meat processing.</p>
+                </div>
+                <div class="card">
+                    <h3>Biological Traceability via Movex ERP</h3>
+                    <p>To control the logistics of tracking millions of living organisms alongside volatile feed materials, CGE utilizes the highly advanced Movex Enterprise Resource Planning system.</p>
+                    <ul class="custom-list">
+                        <li>Provides absolute end-to-end biological and chemical tracking.</li>
+                        <li>Executes complete backward data tracing from point of sale to specific grandparent flock.</li>
+                        <li>Serves as the central core of our national biosecurity and quarantine protocols.</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <img src="cge-products.png" alt="CGE Asset Banner" class="banner-img" style="margin-bottom: 0;">
+        </div>
+
+
+        <div id="Feed" class="main-tab-content">
+            <div class="section-header">
+                <img src="feed-logo.png" alt="Prima Feed Emblem" class="hero-icon" onerror="this.src='cge-logo.png'">
+                <h1>Advanced Animal Nutrition & Feed</h1>
+                <div class="gold-divider"></div>
+                <p>The foundational cash-generating core of CGE. Our computerized feed milling complex at Mutwal is strategically positioned directly adjacent to the Port of Colombo.</p>
+            </div>
+
+            <div class="grid-2" style="margin-bottom: 40px;">
+                <div class="card" style="border-top-color: var(--navy-light);">
+                    <h3>CGE Feeds Segment</h3>
+                    <p>Our flagship milling network, formulating scientifically optimized poultry feeds for all life stages. Driven by automated computerized processing lines ensuring pristine nutrition profiles and high Feed Conversion Ratios.</p>
+                </div>
+                <div class="card" style="border-top-color: #10B981;">
+                    <h3>CLAS Cattle Feed Operations</h3>
+                    <p>Managed independently by Ceylon Livestock and Agro-business Services (Pvt) Ltd, this segment manufactures nutrient-dense, high-yield feeds tailored for dairy cattle to support the national push for liquid milk self-sufficiency.</p>
+                </div>
+            </div>
+
+            <div class="catalog-container">
+                <div class="section-header" style="margin-bottom: 40px;">
+                    <h2 style="font-size: 2rem; margin-bottom: 5px;">Commercial Feed Catalog</h2>
+                    <p style="font-size: 1rem; color: var(--text-body);">Authorized product registry, packaging capacities, and real-time wholesale pricing list.</p>
+                </div>
+
+                <div class="catalog-segment-title"><span>CGE Poultry & Commercial Feeds</span></div>
+                <p style="margin-bottom:30px; color:var(--text-body);">Flagship broiler and layer products optimized for rapid biological growth.</p>
+                
+                <div class="catalog-grid">
+                    <div class="product-card">
+                        <div class="product-image-frame"><img src="15150= 50kg.webp" alt="Broiler Finisher" onerror="this.style.opacity='0.4';"></div>
+                        <div><span class="brand-badge farmers">Farmers' Choice</span><h4 class="product-title">Broiler Finisher Formula</h4></div>
+                        <div class="product-meta"><span class="product-weight">50 kg</span><div class="product-price">15,150.00 <span>LKR</span></div></div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-image-frame"><img src="15520= 50kg.webp" alt="Layer Feed" onerror="this.style.opacity='0.4';"></div>
+                        <div><span class="brand-badge prima">Prima Feed</span><h4 class="product-title">Layer Feed High-Yield</h4></div>
+                        <div class="product-meta"><span class="product-weight">50 kg</span><div class="product-price">15,520.00 <span>LKR</span></div></div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-image-frame"><img src="15660= 50kg.webp" alt="Chick Booster" onerror="this.style.opacity='0.4';"></div>
+                        <div><span class="brand-badge farmers">Farmers' Choice</span><h4 class="product-title">Chick Booster Ration</h4></div>
+                        <div class="product-meta"><span class="product-weight">50 kg</span><div class="product-price">15,660.00 <span>LKR</span></div></div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-image-frame"><img src="5380= 25kg.webp" alt="Layer Grower" onerror="this.style.opacity='0.4';"></div>
+                        <div><span class="brand-badge prima">Prima Feed</span><h4 class="product-title">Layer Grower Formula</h4></div>
+                        <div class="product-meta"><span class="product-weight">25 kg</span><div class="product-price">5,380.00 <span>LKR</span></div></div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-image-frame"><img src="6260= 25kg.webp" alt="Chick Starter" onerror="this.style.opacity='0.4';"></div>
+                        <div><span class="brand-badge prima">Prima Feed</span><h4 class="product-title">Chick Starter Crumbles</h4></div>
+                        <div class="product-meta"><span class="product-weight">25 kg</span><div class="product-price">6,260.00 <span>LKR</span></div></div>
+                    </div>
+                </div>
+
+                <div class="catalog-segment-title"><span>CLAS Cattle Feed Portfolio</span></div>
+                <p style="margin-bottom:30px; color:var(--text-body);">Specialized nutritional feeds designed to maximize bovine lactation cycles and milk fat percentages.</p>
+                
+                <div class="catalog-grid">
+                    <div class="product-card">
+                        <div class="product-image-frame"><img src="2567.93=25kg.webp" alt="Prima Cattle Feed 25kg" onerror="this.style.opacity='0.4';"></div>
+                        <div><span class="brand-badge prima">Prima Cattle</span><h4 class="product-title">Prima Cattle Feed Premium</h4></div>
+                        <div class="product-meta"><span class="product-weight">25 kg</span><div class="product-price">2,567.93 <span>LKR</span></div></div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-image-frame"><img src="5135.87= 50kg.webp" alt="Prima Cattle Feed 50kg" onerror="this.style.opacity='0.4';"></div>
+                        <div><span class="brand-badge prima">Prima Cattle</span><h4 class="product-title">Prima Cattle Feed Premium</h4></div>
+                        <div class="product-meta"><span class="product-weight">50 kg</span><div class="product-price">5,135.87 <span>LKR</span></div></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div id="Chicks" class="main-tab-content">
+            <div class="section-header">
+                <img src="three-acre.jpg" alt="Three Acre Farms Emblem" class="hero-icon" style="border-radius: 50%;">
+                <h1>Poultry Breeding & Hatchery</h1>
+                <div class="gold-divider"></div>
+                <p>Supplying the agricultural baseline of Sri Lanka through our premium publicly listed subsidiary, Three Acre Farms PLC.</p>
+            </div>
+            <div class="grid-2">
+                <div>
+                    <h3>Genetics & Scale of Operation</h3>
+                    <p>Three Acre Farms PLC represents the biological heartbeat of our group. In 2025, we committed a massive <strong>Rs. 600.0 Mn investment in a New GP Farm</strong> and <strong>Rs. 215.0 Mn in constructing new Environmentally Controlled (EC) Houses</strong> to maximize early-stage flock survival rates.</p>
+                </div>
+                <div class="card">
+                    <h3>"Farmers' Choice" Live Stock</h3>
+                    <ul class="custom-list">
+                        <li>Exclusive island-wide rights for world-leading <strong>Hy-line</strong> layer genetics.</li>
+                        <li>Exclusive distribution of robust <strong>Indian River</strong> broiler chicks.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div id="Chicken" class="main-tab-content">
+            <div class="section-header">
+                <img src="prima-chicken-logo.png" alt="Prima Chicken" class="hero-icon">
+                <h1>Prima Chicken Consumer Portfolio</h1>
+                <div class="gold-divider"></div>
+                <p>A top-of-the-range retail product, setting absolute domestic benchmarks for biological safety and freshness.</p>
+            </div>
+            <div class="grid-2">
+                <div>
+                    <h3 style="color: var(--prima-red); font-size: 1.8rem; margin-bottom: 15px;">The Rs. 3 Billion Expansion</h3>
+                    <p>CGE is implementing a massive Rs. 3 billion automation initiative at our Seeduwa meat processing complex. This investment integrates advanced automated lines designed to expand plant output capacity by 100%, allowing the transition into high-margin Value-Added Products (VAPs) such as sausages and premium ready-to-cook portions.</p>
+                </div>
+                <div class="card">
+                    <h3>Consumer CPG Products</h3>
+                    <ul class="custom-list">
+                        <li><strong>Whole Chicken Range:</strong> Premium frozen whole birds.</li>
+                        <li><strong>Half Chicken Range:</strong> Structured portion packs.</li>
+                        <li><strong>Pre-Cut Parts:</strong> Conveniently calibrated formats.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div id="Corporate" class="main-tab-content">
+            
+            <div class="sub-nav-menu">
+                <button class="sub-nav-link active" onclick="openSubPage(event, 'Sub-WhoWeAre')">Who We Are</button>
+                <button class="sub-nav-link" onclick="openSubPage(event, 'Sub-Leadership')">Executive Leadership</button>
+                <button class="sub-nav-link" onclick="openSubPage(event, 'Sub-Subsidiaries')">Subsidiaries</button>
+                <button class="sub-nav-link" onclick="openSubPage(event, 'Sub-Investors')">Investor Relations</button>
+                <button class="sub-nav-link" onclick="openSubPage(event, 'Sub-Careers')">Careers</button>
+            </div>
+
+            <div id="Sub-WhoWeAre" class="sub-tab-content" style="display:block;">
+                <div class="section-header">
+                    <h1>Who We Are</h1>
+                    <div class="gold-divider"></div>
+                    <p>Rooted in Singapore, built on trust in Sri Lanka. We are the architects of the nation's protein supply chain, guided by uncompromising corporate ethics.</p>
+                </div>
+
+                <div class="grid-2" style="gap: 30px; margin-bottom: 60px;">
+                    <div class="vision-mission-card" style="border-top: 5px solid var(--navy-dark);">
+                        <h3 style="color: var(--prima-gold); font-size: 1.8rem; margin-bottom: 15px;">Our Vision</h3>
+                        <p style="font-size: 1.1rem; font-weight: 500; color: var(--navy-dark); margin: 0;">"To be the premier leader in the Agribusiness, Poultry, and Livestock industry in Sri Lanka."</p>
+                    </div>
+                    <div class="vision-mission-card" style="border-top: 5px solid var(--prima-red);">
+                        <h3 style="color: var(--prima-red); font-size: 1.8rem; margin-bottom: 15px;">Our Mission</h3>
+                        <p style="font-size: 1.05rem; color: var(--text-body); margin: 0;">"To provide high-quality animal nutrition, superior genetics, and premium consumer food products at competitive market prices, while ensuring sustainable growth and maximizing shareholder value."</p>
+                    </div>
+                </div>
+
+                <div class="grid-2">
+                    <div>
+                        <h3 style="margin-top: 10px;">Corporate Heritage & Operations</h3>
+                        <p>The foundation of Ceylon Grain Elevators is inextricably linked to Prima Limited, a multinational conglomerate founded in 1961 as the first flour mill in Singapore. Following the establishment of Prima Ceylon in 1977, Ceylon Grain Elevators PLC (CGE) was formally incorporated in May 1982 and listed as a public entity on the Colombo Stock Exchange in 1984.</p>
+                        <p>Functioning as a critical regional node within the broader architecture of the Prima Group, CGE operates as the largest, most technologically advanced, and structurally complex integrated poultry and feed milling enterprise in the Sri Lankan market. We have actively pioneered deep vertical integration to insulate the domestic protein supply from external volatility.</p>
+                    </div>
+                    
+                    <div class="card" style="border-top-color: var(--prima-gold); padding: 30px;">
+                        <h3 style="margin-bottom: 10px;">The 3H Doctrine</h3>
+                        <p style="margin-bottom: 15px;">Our corporate framework is governed by the proprietary 3H principles of the Prima Group:</p>
+                        <ul class="custom-list">
+                            <li><strong>Healthy Organisation:</strong> Formulating an efficient, unified operational architecture.</li>
+                            <li><strong>Honourable Winner:</strong> Securing market dominance through transparent, fair competition.</li>
+                            <li><strong>Honest Fortune:</strong> Establishing lifelong, integrity-driven economic partnerships.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="highlight-box" style="background: linear-gradient(135deg, #D4AF37, #B8860B); color: var(--navy-dark);">
+                    <h3 style="color: var(--navy-dark); font-size: 2rem; margin-bottom: 10px;">2025 Industry Accolades & Recognition</h3>
+                    <p style="color: var(--navy-dark); font-weight: 500;">Demonstrating our commitment to excellence, sustainability, and transparency.</p>
+                    <div style="display: flex; gap: 20px; margin-top: 20px; flex-wrap: wrap;">
+                        <div style="flex: 1; background: rgba(255,255,255,0.6); padding: 20px; border-radius: 12px; font-weight: 600;">🏆 TAGS Awards (CA Sri Lanka): Silver Award (CGE)</div>
+                        <div style="flex: 1; background: rgba(255,255,255,0.6); padding: 20px; border-radius: 12px; font-weight: 600;">🥇 SLAAQP Green Productivity Awards: Gold Award</div>
+                        <div style="flex: 1; background: rgba(255,255,255,0.6); padding: 20px; border-radius: 12px; font-weight: 600;">🌟 Best Management Practice CPM Awards: Livestock Winner</div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="Sub-Leadership" class="sub-tab-content">
+                <div class="section-header">
+                    <h1>Executive Leadership</h1>
+                    <div class="gold-divider"></div>
+                    <p>The strategic and operational governance driving Ceylon Grain Elevators PLC toward a sustainable future.</p>
+                </div>
+
+                <div style="margin-bottom: 60px;">
+                    <div class="leadership-card">
+                        <img src="ceo.webp" alt="Cheng Chih Kwong, Primus" onerror="this.style.display='none'">
+                        <div>
+                            <h3 style="margin-bottom: 5px; font-size: 1.6rem;">Cheng Chih Kwong, Primus</h3>
+                            <p style="color: var(--navy-dark); font-weight: 600; margin: 0 0 15px 0; font-size: 1.1rem;">Executive Director & Chief Executive Officer (Prima Group)</p>
+                            <p style="font-size: 1.05rem; font-style: italic; color: var(--navy-light); border-left: 3px solid var(--prima-gold); padding-left: 15px;">"2025 marked a year of extraordinary resilience and operational excellence for Ceylon Grain Elevators PLC. Despite dynamic market conditions, our strategic investments in automation and biosecurity have yielded a record revenue of Rs. 29.77 Billion. Our commitment to national food security remains unwavering. Through our upcoming Rs. 3 Billion investment in the Seeduwa processing facility, we are fundamentally transforming the landscape of value-added agricultural products in Sri Lanka."</p>
+                        </div>
+                    </div>
+
+                    <div class="leadership-card">
+                        <img src="GM.png" alt="Sanjeewa Perera" onerror="this.style.display='none'">
+                        <div>
+                            <h3 style="margin-bottom: 5px; font-size: 1.6rem;">Sanjeewa Perera (K. A. R. S. Perera)</h3>
+                            <p style="color: var(--navy-dark); font-weight: 600; margin: 0 0 15px 0; font-size: 1.1rem;">General Manager, Ceylon Grain Elevators PLC</p>
+                            <p style="font-size: 1.05rem; font-style: italic; color: var(--navy-light); border-left: 3px solid var(--prima-red); padding-left: 15px;">"As the operational head of Ceylon Grain Elevators in Sri Lanka, my priority is the flawless execution of our domestic strategy. 2025 has been a testament to our on-the-ground resilience. Our dedicated local workforce has successfully navigated dynamic market conditions, achieving record revenues while actively implementing our Rs. 3 Billion Seeduwa expansion. We remain deeply committed to securing Sri Lanka's protein supply chain."</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="Sub-Subsidiaries" class="sub-tab-content">
+                <div class="section-header">
+                    <h1>The Subsidiary Architecture</h1>
+                    <div class="gold-divider"></div>
+                    <p>Strategic legal and operational compartmentalization to isolate biological risk and scale real estate assets.</p>
+                </div>
+                
+                <div style="background: rgba(255,255,255,0.9); border: 1px solid var(--border-light); padding: 25px; border-radius: 12px; margin-bottom: 40px; color: var(--text-body);">
+                    <strong style="color: var(--prima-red); display: block; margin-bottom: 10px;">Strategic Corporate Restructuring (Effective Jan 1, 2026)</strong>
+                    To further optimize internal efficiencies, the Board of Directors approved the strategic amalgamation of <em>Millennium Multibreeder Farm (Private) Limited</em> and <em>Ceylon Pioneer Poultry Breeders Limited</em> directly into <strong>Three Acre Farms PLC</strong>.
+                </div>
+
+                <div class="grid-3">
+                    <div class="card">
+                        <h3>Ceylon Livestock & Agro (CLAS)</h3>
+                        <p>Manages specialized import lines for world-class veterinary vaccines, pharmaceuticals, and automated equipment, protecting our internal biosecurity.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Ceylon Aquatech (Pvt) Ltd</h3>
+                        <p>Established in 1995 to drive specialized integration into coastal aquaculture. Manages premium shrimp breeding and custom crustacean milling feeds.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Ceylon Warehouse Complex</h3>
+                        <p>Optimizes capital real estate assets located directly near the harbor by leasing out excess silo space to major third-party commercial entities.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="Sub-Investors" class="sub-tab-content">
+                <div class="section-header">
+                    <h1>Investor Relations</h1>
+                    <div class="gold-divider"></div>
+                    <p>Ceylon Grain Elevators PLC is committed to absolute financial transparency.</p>
+                </div>
+                <div class="grid-2">
+                    <div>
+                        <h3>Financial Disclosures</h3>
+                        <p>As a publicly listed entity on the Colombo Stock Exchange (Ticker: GRAN.N0000), we adhere to the highest standards of corporate reporting and IFRS compliance.</p>
+                        <ul class="custom-list">
+                            <li><strong>2025 Revenue:</strong> Rs. 29.77 Billion</li>
+                            <li><strong>Total Assets:</strong> Rs. 25.89 Billion</li>
+                            <li><strong>Profit Growth:</strong> 31%</li>
+                        </ul>
+                    </div>
+                    <div class="report-card">
+                        <img src="report-cover.jpg" alt="2025 Annual Report" onerror="this.src='cge-logo.png'">
+                        <div>
+                            <h3 style="margin-bottom: 5px;">2025 Annual Report</h3>
+                            <p style="margin-bottom: 0; font-size: 0.9rem; color: #64748B;">Comprehensive Equity, Operational, and ESG Analysis.</p>
+                            <a href="671_1777977423734.pdf" target="_blank" class="btn-download">Download PDF Report</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="Sub-Careers" class="sub-tab-content">
+                <img src="careers-banner.jpg" alt="Careers at CGE" class="banner-img" onerror="this.style.display='none'">
+                <div class="section-header">
+                    <h1>Join the Prima Family</h1>
+                    <div class="gold-divider"></div>
+                    <p>Build your career with the largest agribusiness enterprise in Sri Lanka.</p>
+                </div>
+                <div class="grid-2">
+                    <div class="card" style="border-top-color: var(--navy-dark);">
+                        <h3>Why Work With Us?</h3>
+                        <p>With over 1,350 personnel island-wide, we offer dynamic career paths in agriculture, veterinary science, food technology, engineering, and corporate management.</p>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.8); padding: 30px; border-radius: 16px;">
+                        <h3 style="margin-bottom: 20px;">Current Opportunities</h3>
+                        <div style="border: 1px solid var(--border-light); background: white; padding: 15px 20px; border-radius: 8px; margin-bottom: 15px;">
+                            <h4 style="margin: 0;">Food Technologist / QA Executive</h4>
+                            <p style="margin: 5px 0 0 0; font-size: 0.85rem; color: #64748B;">Location: Seeduwa Plant | Full-Time</p>
+                        </div>
+                        <div style="border: 1px solid var(--border-light); background: white; padding: 15px 20px; border-radius: 8px; margin-bottom: 15px;">
+                            <h4 style="margin: 0;">Livestock / Farm Manager</h4>
+                            <p style="margin: 5px 0 0 0; font-size: 0.85rem; color: #64748B;">Location: Meegoda Farm | Full-Time</p>
+                        </div>
+                        <p style="font-size: 0.9rem;"><em>Send your comprehensive CV to <strong>careers@prima.com.lk</strong></em></p>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+
+        <div id="Contact" class="main-tab-content">
+            <div class="section-header">
+                <h1>Contact Ceylon Grain Elevators</h1>
+                <div class="gold-divider"></div>
+            </div>
+            <div class="grid-2">
+                <div class="contact-grid-box">
+                    <h2>Operational Base</h2>
+                    <p style="color: white; font-size: 1.1rem; margin-bottom: 30px;">
+                        <strong>Ceylon Grain Elevators PLC</strong><br>
+                        No. 15, Rock House Lane,<br> Mutwal, Colombo 15, Sri Lanka
+                    </p>
+                    <p style="margin-bottom: 10px;"><strong>Direct Line:</strong> <a href="tel:+94112522556" style="color: white; text-decoration: none;">+94 (11) 252 2556</a></p>
+                    <p style="margin-bottom: 10px;"><strong>Fax Terminal:</strong> +94 (11) 252 4163</p>
+                    <p><strong>Corporate Email:</strong> <a href="mailto:cge-info@prima.com.lk" style="color: white; text-decoration: none;">cge-info@prima.com.lk</a></p>
+                    
+                    <div style="margin-top: 40px; border-top: 1px solid rgba(255,255,255,0.2); padding-top: 20px;">
+                        <p style="font-size: 0.85rem; color: #D1D5DB; margin: 0;"><em>Note: The Prima Group Corporate Management Office is located in Rajagiriya, Sri Lanka.</em></p>
+                    </div>
+                </div>
+                <div>
+                    <h3 style="margin-bottom: 20px;">Direct Inquiry Form</h3>
+                    <form onsubmit="event.preventDefault(); alert('Transmission Successful. Your request has been directed to the CGE operational office.');">
+                        <div class="input-group"><input type="text" placeholder="Full Representative Name" required></div>
+                        <div class="input-group"><input type="email" placeholder="Corporate Email Address" required></div>
+                        <div class="input-group"><textarea rows="4" placeholder="Detail your business or wholesale inquiry here..." required></textarea></div>
+                        <button type="submit" class="btn-primary">Transmit Inquiry</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logos">
+                <img src="cge-logo.png" alt="CGE Logo">
+                <img src="prima-logo.png" alt="Prima Group Logo">
+            </div>
+            <div class="footer-contact">
+                <p style="color: white; font-weight: 600; font-size: 1.1rem; margin-bottom: 10px;">Ceylon Grain Elevators PLC</p>
+                <p>No. 15, Rock House Lane, Colombo 15, Sri Lanka</p>
+                <p>
+                    <a href="tel:+94112522556" class="footer-link">📞 +94 (11) 252 2556</a> &nbsp;|&nbsp; 
+                    <a href="mailto:cge-info@prima.com.lk" class="footer-link">✉️ cge-info@prima.com.lk</a>
+                </p>
+            </div>
+        </div>
+        <div style="border-top: 1px solid rgba(255,255,255,0.1); margin-top: 30px; padding-top: 25px;">
+            <p style="margin: 0; font-size: 0.85rem;">&copy; 2026 Ceylon Grain Elevators PLC. A Premier Subsidiary of the Prima Group (Singapore). All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Home Button Function (Clicking the Logo)
+        function goHome() {
+            var navlinks = document.getElementsByClassName("nav-link");
+            for (var i = 0; i < navlinks.length; i++) {
+                navlinks[i].className = navlinks[i].className.replace(" active", "");
+            }
+            navlinks[0].className += " active";
+            
+            var tabcontent = document.getElementsByClassName("main-tab-content");
+            for (var i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+                tabcontent[i].style.animation = "none"; 
+            }
+            
+            var selectedTab = document.getElementById('Overview');
+            selectedTab.style.display = "block";
+            void selectedTab.offsetWidth;
+            selectedTab.style.animation = "majesticFadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards";
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Main Header Tabs
+        function openMainPage(evt, pageName) {
+            var i, tabcontent, navlinks;
+            tabcontent = document.getElementsByClassName("main-tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+                tabcontent[i].style.animation = "none"; 
+            }
+            navlinks = document.getElementsByClassName("nav-link");
+            for (i = 0; i < navlinks.length; i++) {
+                navlinks[i].className = navlinks[i].className.replace(" active", "");
+            }
+            var selectedTab = document.getElementById(pageName);
+            selectedTab.style.display = "block";
+            
+            void selectedTab.offsetWidth;
+            selectedTab.style.animation = "majesticFadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards";
+
+            if(evt && evt.currentTarget) {
+                evt.currentTarget.className += " active";
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Inner Sub-Tabs (For the Corporate Section)
+        function openSubPage(evt, subPageName) {
+            var i, subcontent, subnavlinks;
+            subcontent = document.getElementsByClassName("sub-tab-content");
+            for (i = 0; i < subcontent.length; i++) {
+                subcontent[i].style.display = "none";
+                subcontent[i].style.animation = "none";
+            }
+            subnavlinks = document.getElementsByClassName("sub-nav-link");
+            for (i = 0; i < subnavlinks.length; i++) {
+                subnavlinks[i].className = subnavlinks[i].className.replace(" active", "");
+            }
+            var selectedSubTab = document.getElementById(subPageName);
+            selectedSubTab.style.display = "block";
+            
+            void selectedSubTab.offsetWidth;
+            selectedSubTab.style.animation = "majesticFadeUp 0.4s ease forwards";
+            
+            evt.currentTarget.className += " active";
+        }
+    </script>
+</body>
+</html>
